@@ -71,10 +71,22 @@
       .illustration {
         margin: 0 auto;
       }
+      .illustration img {
+        animation: colorIn 3s ease-in-out forwards;
+      }
+
+      @keyframes colorIn {
+        0% {
+          filter: grayscale(100%);
+        }
+        100% {
+          filter: grayscale(0%);
+        }
+      }
   
       .content {
         max-width: 700px;
-        padding: 2rem;
+        padding: 0 2rem 2rem 2rem;
         background-color: #fff;
         border-radius: 10px;
         box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
@@ -83,10 +95,16 @@
       }
   
       h2 {
-        font-family: 'TAN Mon Cheri', serif;
-        font-size: 1.5rem;
-        text-transform: uppercase;
-        text-align: center;
+        font-family: 'Crimson Text', serif;
+        font-size: 2rem;
+        font-variant: small-caps;
+        /* text-align: center; */
+      }
+
+      h3 {
+        font-family: 'Crimson Text', serif;
+        font-variant: small-caps;
+        font-size: 1.7rem;
       }
   
       p, li {
@@ -95,10 +113,21 @@
       }
 
       .theme {
-        font-family: 'Beautifully Delicious';
-        font-size: 5em;
-        margin: .5rem;
+        font-family: 'Crimson Text', serif;
+        font-size: 3em;
+        margin: 0.5rem;
         text-align: center;
+        color: #ff6f61; /* Add a joyful splash of color */
+        animation: pulse 10s infinite;
+      }
+
+      @keyframes pulse {
+        0%, 100% {
+          transform: scale(1);
+        }
+        50% {
+          transform: scale(1.1);
+        }
       }
   
       ul {
@@ -111,7 +140,7 @@
         padding: 0.75rem 1.5rem;
         font-size: 1rem;
         font-weight: bold;
-        background-color: #2c2c2c;
+        background-color: #ff6f61;
         color: #fff;
         border: none;
         border-radius: 8px;
@@ -121,17 +150,20 @@
       }
 
       .cta:hover {
-        background-color: #444;
+        background-color: #c24035;
       }
   
       footer {
         margin-top: 2rem;
-        font-family: 'Beautifully Delicious Script', cursive;
-        font-size: 1.25rem;
-        color: #555;
-        text-align: center;
         padding: 1rem;
         margin-bottom: 4rem;
+      }
+
+      footer p {
+        font-family: 'Crimson Text', cursive;
+        font-size: 1rem;
+        color: #ff6f61; /* Match the joyful theme color */
+        text-align: center;
       }
   
       .countdown {
@@ -139,6 +171,7 @@
         color: #444;
         margin-top: 1rem;
         font-weight: bold;
+        text-align: center;
       }
   
       @keyframes fadeIn {
@@ -164,17 +197,15 @@
 <body>
   <header>
     <div class="title"><span class="title-pretext">The</span> RISEN WORD</div>
-    <!-- <div class="subtitle">Rejoice, for He is Risen</div> -->
-    <div class="illustration">
-      <img src="lily.svg" alt="An Easter lily" width="300">
-    </div>
-    <div class="countdown" id="countdown"></div>
+      <!-- <div class="subtitle">Rejoice, for He is Risen</div> -->
   </header>
 
   <main class="content">
     <h2>A Family Easter Poetry Contest</h2>
-    <p>Celebrate the Resurrection through poetry with our family-friendly contest. All ages are encouraged to submit heartfelt expressions inspired by the theme:</p>
+    <p>Celebrate the Resurrection with joy and creativity in our family-friendly poetry contest! Whether your poem is heartfelt, humorous, or bursting with Easter cheer, we welcome all ages to share their expressions on the theme:</p>
     <p class="theme"><strong>"Into the Light"</strong></p>
+
+    <div class="countdown" id="countdown"></div>
 
     <h3>Categories:</h3>
     <ul>
@@ -198,18 +229,25 @@
       <li><strong>Voting is anonymous and democratic</strong>: each participant gets two votes (not for their own work)</li>
       <a href="https://forms.gle/cY8NbYh6GmNdx54x6" class="cta" target="_blank">Submit Your Poem</a>
     </ul>
+    
   </main>
 
   <footer>
-    Rejoice, for He is Risen.
+    <p>
+      &copy; <script>document.write(new Date().getFullYear());</script> Seafish Productions.
+      <i>Rejoice, for He is Risen.</i>
+    </p>
+    <!-- <div class="illustration">
+      <img src="lily.svg" alt="An Easter lily" width="300">
+      <img src="tomb.png" alt="The garden tomb" width="300">
+    </div> -->
   </footer>
-
   <script>
     const countdown = document.getElementById('countdown');
     const submitBtn = document.getElementById('submitBtn');
     const deadline = new Date('April 19, 2025 00:00:00').getTime(); // 11:59 PM on April 18
 
-    const x = setInterval(() => {
+    function setTime() {
       const now = new Date().getTime();
       const distance = deadline - now;
 
@@ -226,8 +264,14 @@
       const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
       const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
 
-      countdown.innerHTML = `Time remaining: ${days}d ${hours}h ${minutes}m`;
+      countdown.innerHTML = `Be sure to submit by the deadline: ${days}d ${hours}h ${minutes}m left!`;
+    }
+
+    const x = setInterval(() => {
+      setTime();
     }, 60000);
+
+    setTime();
   </script>
 </body>
 </html>
