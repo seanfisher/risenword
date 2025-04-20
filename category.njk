@@ -1,0 +1,19 @@
+---
+pagination:
+  data: collections.poemsByCategory      # the object you build in .eleventy.js
+  size: 1                                # one category per page
+  alias: cat                             # current item is now “cat”
+permalink: "/categories/{{ cat | slugify }}/"
+layout: layout.njk
+---
+
+{% set category = cat %}
+{% set poems    = collections.poemsByCategory[cat] %}
+
+<h1>Category: {{ category }}</h1>
+
+<ul>
+{% for poem in poems %}
+  <li><a href="{{ poem.url }}">{{ poem.data.title }} by {{ poem.data.author }}</a></li>
+{% endfor %}
+</ul>

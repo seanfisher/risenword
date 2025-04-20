@@ -1,0 +1,19 @@
+---
+pagination:
+  data: collections.poemsByYear      # the object you build in .eleventy.js
+  size: 1                            # one category per page
+  alias: contestYear                 # current item is now “year”
+permalink: "/years/{{ contestYear | slugify }}/"
+layout: layout.njk
+---
+
+{% set year  = contestYear %}
+{% set poems = collections.poemsByYear[contestYear] %}
+
+<h1>Contest Year: {{ year }}</h1>
+
+<ul>
+{% for poem in poems %}
+  <li><a href="{{ poem.url }}">{{ poem.data.title }} by {{ poem.data.author }}</a></li>
+{% endfor %}
+</ul>

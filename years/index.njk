@@ -1,0 +1,14 @@
+---
+layout: layout.njk
+permalink: "/years/"
+---
+
+<h1>Contest Years</h1>
+<ul>
+  {% for year in collections.contestYears %}
+    <li>
+      <a href="/years/{{ year | slugify }}/">{{ year }}</a>
+      ({{ collections.poemsByYear[year] | length }})
+    </li>
+  {% endfor %}
+</ul>
