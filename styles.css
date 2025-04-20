@@ -1,0 +1,206 @@
+/* Local Fonts */
+@font-face {
+    font-family: 'TAN Mon Cheri';
+    src: url('/fonts/tan-mon-cheri.woff2') format('woff2'),
+        url('/fonts/tan-mon-cheri.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Beautifully Delicious';
+    src: local('Beautifully Delicious Script Regular'), local('Beautifully-Delicious-Script-Regular'),
+        url('/fonts/BDScript-Regular.woff2') format('woff2'),
+        url('/fonts/BDScript-Regular.woff') format('woff'),
+        url('/fonts/BDScript-Regular.ttf') format('truetype');
+    font-weight: 400;
+    font-style: normal;
+}
+
+/* Extracted styles */
+
+body {
+    background-color: #f9f7f3;
+    font-family: 'Crimson Text', serif;
+    margin: 0;
+    padding: 0;
+    color: #2c2c2c;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    animation: fadeIn 1.5s ease-in;
+}
+
+header {
+    margin-top: 40px;
+    text-align: center;
+    padding: 0 1rem;
+}
+
+.title {
+    font-family: 'TAN Mon Cheri', serif;
+    font-size: 2.5rem;
+    letter-spacing: 1px;
+    margin-bottom: 0.5rem;
+}
+
+.title-pretext {
+    font-family: 'Beautifully Delicious', cursive;
+    display: block;
+    font-size: 5rem;
+}
+
+.subtitle {
+    font-family: 'Crimson Text', cursive;
+    font-size: 1rem;
+    color: #666;
+    margin-top: -10px;
+}
+
+.illustration {
+    margin: 0 auto;
+}
+
+.illustration img {
+    animation: colorIn 3s ease-in-out forwards;
+}
+
+@keyframes colorIn {
+    0% {
+        filter: grayscale(100%);
+    }
+
+    100% {
+        filter: grayscale(0%);
+    }
+}
+
+.content {
+    max-width: 700px;
+    padding: 0 2rem 2rem 2rem;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+    margin: 2rem 1rem;
+    animation: slideUp 1s ease-out;
+}
+
+h2 {
+    font-family: 'Crimson Text', serif;
+    font-size: 2rem;
+    font-variant: small-caps;
+    /* text-align: center; */
+}
+
+h3 {
+    font-family: 'Crimson Text', serif;
+    font-variant: small-caps;
+    font-size: 1.7rem;
+}
+
+p,
+li {
+    font-size: 1.4rem;
+    line-height: 1.6;
+}
+
+.theme {
+    font-family: 'Crimson Text', serif;
+    font-size: 3em;
+    margin: 0.5rem;
+    text-align: center;
+    color: #ff6f61;
+    animation: pulse 10s infinite;
+}
+
+@keyframes pulse {
+
+    0%,
+    100% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.1);
+    }
+}
+
+ul {
+    padding-left: 20px;
+}
+
+.cta {
+    display: block;
+    margin: 2rem auto 0;
+    padding: 0.75rem 1.5rem;
+    font-size: 1rem;
+    font-weight: bold;
+    background-color: #ff6f61;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    text-decoration: none;
+    text-align: center;
+    transition: background-color 0.3s ease;
+}
+
+.cta:hover {
+    background-color: #c24035;
+}
+
+footer {
+    margin-top: 2rem;
+    padding: 1rem;
+    margin-bottom: 4rem;
+}
+
+footer p {
+    font-family: 'Crimson Text', cursive;
+    font-size: 1rem;
+    color: #ff6f61;
+    text-align: center;
+}
+
+.countdown {
+    font-size: 1.1rem;
+    color: #444;
+    margin-top: 1rem;
+    font-weight: bold;
+    text-align: center;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes slideUp {
+    from {
+        transform: translateY(20px);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+@media (max-width: 600px) {
+    .title {
+        font-size: 2rem;
+    }
+
+    .content {
+        padding: 0 1.5rem 1.5rem 1.5rem;
+    }
+
+    .theme {
+        font-size: 2.5em;
+    }
+}

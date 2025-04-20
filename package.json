@@ -1,0 +1,25 @@
+{
+  "name": "risenword.org",
+  "version": "1.0.0",
+  "description": "Risen Word is a site sharing artful words of Christ",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/seanfisher/risenword.git"
+  },
+  "author": "Sean Fisher <opensource@signup.seafish.io> (https://seafish.io/)",
+  "license": "UNLICENSED",
+  "bugs": {
+    "url": "https://github.com/seanfisher/risenword/issues"
+  },
+  "homepage": "https://github.com/seanfisher/risenword#readme",
+  "type": "module",
+  "private": true,
+  "dependencies": {
+    "@11ty/eleventy": "^3.0.0",
+    "clean-css": "^5.3.3"
+  }
+}
