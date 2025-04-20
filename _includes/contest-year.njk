@@ -1,0 +1,57 @@
+{% extends "base.njk" %}
+
+{% block content %}
+
+{% import "./_macros/poem-preview.njk" as poemPreview %}
+{% set poems = collections.poemsByYear[year] | default([]) %}
+<h1>{{ title }}</h1>
+
+{# Build dynamic unique list of categories #}
+{% set categories = [] %}
+{% for poem in poems %}
+  {% if categories.indexOf(poem.data.category) == -1 %}
+    {% set categories = categories.concat([poem.data.category]) %}
+  {% endif %}
+{% endfor %}
+
+{% for cat in categories %}
+  <section>
+    <h2>{{ cat | capitalize }} Poems</h2>
+
+    {# Filter poems by this category #}
+    {% set filteredPoems = [] %}
+    {% for poem in poems %}
+      {% if poem.data.category == cat %}
+        {% set filteredPoems = filteredPoems.concat([poem]) %}
+      {% endif %}
+    {% endfor %}
+
+    {% set winner = null %}
+    {% set runnerUp = null %}
+    {% for poem in filteredPoems %}
+      {% if poem.data.award == "winner" %}
+        {% set winner = poem %}
+      {% elseif poem.data.award == "runner-up" %}
+        {% set runnerUp = poem %}
+      {% endif %}
+    {% endfor %}
+
+    {% if winner %}
+      <h3>🏆 Winner</h3>
+      {{ poemPreview.render(winner) }}
+    {% endif %}
+    {% if runnerUp %}
+      <h3>🥈 Runner-Up</h3>
+      {{ poemPreview.render(runnerUp) }}
+    {% endif %}
+
+    <h3>All Entries</h3>
+    <ul>
+      {% for poem in filteredPoems %}
+        <li><a href="{{ poem.url }}">{{ poem.data.title }} by {{ poem.data.author }}</a></li>
+      {% endfor %}
+    </ul>
+  </section>
+{% endfor %}
+
+{% endblock %}

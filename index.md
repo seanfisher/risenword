@@ -1,6 +1,6 @@
 ---
 title: Home
-layout: base.njk
+layout: home.njk
 ---
 
 <h2>A Family Easter Poetry Contest</h2>

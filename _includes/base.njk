@@ -10,6 +10,7 @@
     <meta property="og:title" content="{{ title or site.title }}">
     <meta property="og:description" content="{{ description or site.description }}">
     <meta property="og:url" content="{{ site.url }}{{ page.url }}">
+    <meta name="generator" content="{{ eleventy.generator }}">
 
     <!-- <link href="/styles.css" rel="stylesheet" /> -->
     <link rel="preload" href="/fonts/tan-mon-cheri.woff2" as="font" type="font/woff2" crossorigin />
@@ -23,11 +24,10 @@
 <body>
   <header>
     <div class="title"><span class="title-pretext">The</span> RISEN WORD</div>
-      <!-- <div class="subtitle">Rejoice, for He is Risen</div> -->
   </header>
 
   <main class="content">
-    {{ content | safe }}
+    {% block content %}{% endblock %}
   </main>
 
   <footer>

@@ -1,0 +1,28 @@
+{% extends "base.njk" %}
+
+{% block content %}
+<article class="poem" itemscope itemtype="http://schema.org/CreativeWork">
+  <link itemprop="additionalType" href="https://dbpedia.org/ontology/Poem" />
+  <h2 itemprop="name">{{ title }}</h2>
+  <p class="author">By <span itemprop="author">{{ author }}</span></p>
+  <p class="date">Published <span itemprop="dateCreated">{{ page.date }}</span></p>
+
+  {% if award == "winner" %}
+  <p class="badge winner">🏆 Winner - {{ category | capitalize }} {{ year }}</p>
+  {% elif award == "runner-up" %}
+  <p class="badge runner-up">🥈 Runner-Up - {{ category | capitalize }} {{ year }}</p>
+  {% endif %}
+  
+  <p class="poem-text">
+    <pre itemprop="text">
+      {{ content | safe }}
+    </pre>
+  </p>
+
+  <footer class="disclosure">
+    <p><em>{{ ai_disclosure }}</em></p>
+  </footer>
+</article>
+
+
+{% endblock %}

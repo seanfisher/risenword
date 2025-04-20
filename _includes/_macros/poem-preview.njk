@@ -1,0 +1,12 @@
+{% macro render(poem) %}
+
+{% set url = poem.url %}
+{% set data = poem.data %}
+
+<article class="preview">
+  <h4><a href="{{ url }}">{{ data.title }}</a></h4>
+  <p>By {{ data.author }}</p>
+  <p>{{ data.ai_disclosure }}</p>
+</article>
+
+{% endmacro %}
