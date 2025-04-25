@@ -1,3 +1,4 @@
+import { DateTime } from "luxon";
 import CleanCSS from "clean-css";
 
 function configureBuild(eleventyConfig) {
@@ -9,6 +10,24 @@ function configureBuild(eleventyConfig) {
   // ✅ Add a filter to minify CSS
   eleventyConfig.addFilter("cssmin", function (code) {
     return new CleanCSS({}).minify(code).styles;
+  });
+
+  eleventyConfig.addFilter("date", function (dateObj, format = 'LLLL dd, yyyy') {
+    // Add a friendly date filter to nunjucks.
+    // Defaults to format of LLLL dd, yyyy unless an alternate is passed as a parameter.
+    // {{ date | friendlyDate('OPTIONAL FORMAT STRING') }}
+    // List of supported tokens: https://moment.github.io/luxon/docs/manual/formatting.html#table-of-tokens
+    if (dateObj instanceof Date) {
+      return DateTime.fromJSDate(dateObj, {
+        zone: 'utc',
+        locale: "en"
+      }).toFormat(format);
+    } else {
+      return DateTime.fromISO(dateObj, {
+        zone: "utc",
+        locale: "en"
+      }).toFormat(format);
+    }
   });
 }
 

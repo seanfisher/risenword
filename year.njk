@@ -7,13 +7,14 @@ permalink: "/years/{{ contestYear | slugify }}/"
 layout: layout.njk
 ---
 
-{% set year  = contestYear %}
-{% set poems = collections.poemsByYear[contestYear] %}
+{% set sortedPoems = collections.poemsByYear[contestYear] | sort("data.title", reverse=false) | sort("page.date", reverse=true) %}
 
-<h1>Contest Year: {{ year }}</h1>
+
+<h1>Contest Year: {{ contestYear }}</h1>
+<em>Alphabetically</em>
 
 <ul>
-{% for poem in poems %}
-  <li><a href="{{ poem.url }}">{{ poem.data.title }} by {{ poem.data.author }}</a></li>
+{% for poem in sortedPoems %}
+  <li><a href="{{ poem.url }}">{% if poem.data.award === "winner" %}🥇 {% endif %}{% if poem.data.award === "runner-up" %}🥈 {% endif %}{{ poem.data.title }} by {{ poem.data.author }}</a></li>
 {% endfor %}
 </ul>

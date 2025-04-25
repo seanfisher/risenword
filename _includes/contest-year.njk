@@ -4,54 +4,83 @@
 
 {% import "./_macros/poem-preview.njk" as poemPreview %}
 {% set poems = collections.poemsByYear[year] | default([]) %}
-<h1>{{ title }}</h1>
+<div class="contest-year">
+  <h1>{{ title }}</h1>
 
-{# Build dynamic unique list of categories #}
-{% set categories = [] %}
-{% for poem in poems %}
-  {% if categories.indexOf(poem.data.category) == -1 %}
-    {% set categories = categories.concat([poem.data.category]) %}
-  {% endif %}
-{% endfor %}
-
-{% for cat in categories %}
-  <section>
-    <h2>{{ cat | capitalize }} Poems</h2>
-
-    {# Filter poems by this category #}
-    {% set filteredPoems = [] %}
-    {% for poem in poems %}
-      {% if poem.data.category == cat %}
-        {% set filteredPoems = filteredPoems.concat([poem]) %}
-      {% endif %}
-    {% endfor %}
-
-    {% set winner = null %}
-    {% set runnerUp = null %}
-    {% for poem in filteredPoems %}
-      {% if poem.data.award == "winner" %}
-        {% set winner = poem %}
-      {% elseif poem.data.award == "runner-up" %}
-        {% set runnerUp = poem %}
-      {% endif %}
-    {% endfor %}
-
-    {% if winner %}
-      <h3>🏆 Winner</h3>
-      {{ poemPreview.render(winner) }}
+  {# Build dynamic unique list of categories #}
+  {% set categories = [] %}
+  {% for poem in poems %}
+    {% if categories.indexOf(poem.data.category) == -1 %}
+      {% set categories = categories.concat([poem.data.category]) %}
     {% endif %}
-    {% if runnerUp %}
-      <h3>🥈 Runner-Up</h3>
-      {{ poemPreview.render(runnerUp) }}
-    {% endif %}
+  {% endfor %}
 
-    <h3>All Entries</h3>
-    <ul>
-      {% for poem in filteredPoems %}
-        <li><a href="{{ poem.url }}">{{ poem.data.title }} by {{ poem.data.author }}</a></li>
+  {% for cat in categories %}
+    <div class="contest-section">
+      <h2>{{ cat | capitalize }} Poems</h2>
+
+      {# Filter poems by this category #}
+      {% set filteredPoems = [] %}
+      {% for poem in poems %}
+        {% if poem.data.category == cat %}
+          {% set filteredPoems = filteredPoems.concat([poem]) %}
+        {% endif %}
       {% endfor %}
-    </ul>
-  </section>
-{% endfor %}
+
+      {% set winner = null %}
+      {% set honorable = null %}
+      {% for poem in filteredPoems %}
+        {% if poem.data.award == "winner" %}
+          {% set winner = poem %}
+        {% elseif poem.data.award == "honorable-mention" %}
+          {% set honorable = poem %}
+        {% endif %}
+      {% endfor %}
+
+      <div class="awards-container">
+        {% if winner %}
+          <div class="award-section">
+            <h3 class="winner-title">🏆 Winner</h3>
+            <div class="poem-card">
+              <h4 class="poem-card-title">{{ winner.data.title }}</h4>
+              <div class="poem-card-author">by {{ winner.data.author }}</div>
+              <p class="poem-card-preview">{{ winner.content | striptags | truncate(150) }}</p>
+              <a href="{{ winner.url }}" class="poem-card-link">Read Full Poem →</a>
+            </div>
+          </div>
+        {% endif %}
+        
+        {% if honorable %}
+          <div class="award-section">
+            <h3 class="honorable-title">⭐ Honorable Mention</h3>
+            <div class="poem-card">
+              <h4 class="poem-card-title">{{ honorable.data.title }}</h4>
+              <div class="poem-card-author">by {{ honorable.data.author }}</div>
+              <p class="poem-card-preview">{{ honorable.content | striptags | truncate(150) }}</p>
+              <a href="{{ honorable.url }}" class="poem-card-link">Read Full Poem →</a>
+            </div>
+          </div>
+        {% endif %}
+      </div>
+
+      <h3>All Entries</h3>
+      <ul class="entries-list">
+        {% for poem in filteredPoems %}
+          <li>
+            <a href="{{ poem.url }}">
+              <div class="poem-card">
+                <h4 class="poem-card-title">{{ poem.data.title }}</h4>
+                <div class="poem-card-author">by {{ poem.data.author }}</div>
+                <p class="poem-card-preview">{{ poem.content | striptags | truncate(150) }}</p>
+              </div>
+            </a>
+          </li>
+        {% endfor %}
+      </ul>
+    </div>
+  {% endfor %}
+
+  {{ content | safe}}
+</div>
 
 {% endblock %}
