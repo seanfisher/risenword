@@ -3,10 +3,12 @@
 {% set url = poem.url %}
 {% set data = poem.data %}
 
-<article class="preview">
-  <h4><a href="{{ url }}">{{ data.title }}</a></h4>
-  <p>By {{ data.author }}</p>
-  <p>{{ data.ai_disclosure }}</p>
+<article class="bg-white p-4 rounded-lg shadow-md">
+  <h4 class="text-lg font-serif font-bold mb-2">
+    <a href="{{ url }}" class="text-blue-600 hover:underline">{{ data.title }}</a>
+  </h4>
+  <p class="text-gray-600">By {{ data.author }}</p>
+  <p class="text-gray-500 text-sm">{{ data.ai_disclosure }}</p>
 </article>
 
 {% endmacro %}

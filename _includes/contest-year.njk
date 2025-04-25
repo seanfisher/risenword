@@ -4,8 +4,8 @@
 
 {% import "./_macros/poem-preview.njk" as poemPreview %}
 {% set poems = collections.poemsByYear[year] | default([]) %}
-<div class="contest-year">
-  <h1>{{ title }}</h1>
+<div class="max-w-5xl mx-auto px-4">
+  <h1 class="text-4xl font-serif font-bold text-center my-8">{{ title }}</h1>
 
   {# Build dynamic unique list of categories #}
   {% set categories = [] %}
@@ -16,8 +16,8 @@
   {% endfor %}
 
   {% for cat in categories %}
-    <div class="contest-section">
-      <h2>{{ cat | capitalize }} Poems</h2>
+    <div class="bg-white p-6 rounded-lg shadow-md my-8">
+      <h2 class="text-2xl font-serif font-bold text-[#2c2c2c] mb-4">{{ cat | capitalize }} Poems</h2>
 
       {# Filter poems by this category #}
       {% set filteredPoems = [] %}
@@ -37,42 +37,40 @@
         {% endif %}
       {% endfor %}
 
-      <div class="awards-container">
+      <div class="flex flex-wrap gap-4 justify-center">
         {% if winner %}
-          <div class="award-section">
-            <h3 class="winner-title">🏆 Winner</h3>
-            <div class="poem-card">
-              <h4 class="poem-card-title">{{ winner.data.title }}</h4>
-              <div class="poem-card-author">by {{ winner.data.author }}</div>
-              <p class="poem-card-preview">{{ winner.content | striptags | truncate(150) }}</p>
-              <a href="{{ winner.url }}" class="poem-card-link">Read Full Poem →</a>
+          <div class="bg-gradient-to-r from-yellow-400 to-yellow-300 text-gray-800 p-4 rounded-lg shadow-md">
+            <h3 class="text-lg font-bold">🏆 Winner</h3>
+            <div>
+              <h4 class="text-xl font-serif font-bold">{{ winner.data.title }}</h4>
+              <p class="text-gray-600">by {{ winner.data.author }}</p>
+              <p class="text-gray-500">{{ winner.content | striptags | truncate(150) }}</p>
+              <a href="{{ winner.url }}" class="text-blue-600 hover:underline">Read Full Poem →</a>
             </div>
           </div>
         {% endif %}
-        
+
         {% if honorable %}
-          <div class="award-section">
-            <h3 class="honorable-title">⭐ Honorable Mention</h3>
-            <div class="poem-card">
-              <h4 class="poem-card-title">{{ honorable.data.title }}</h4>
-              <div class="poem-card-author">by {{ honorable.data.author }}</div>
-              <p class="poem-card-preview">{{ honorable.content | striptags | truncate(150) }}</p>
-              <a href="{{ honorable.url }}" class="poem-card-link">Read Full Poem →</a>
+          <div class="bg-gradient-to-r from-gray-300 to-gray-200 text-gray-800 p-4 rounded-lg shadow-md">
+            <h3 class="text-lg font-bold">⭐ Honorable Mention</h3>
+            <div>
+              <h4 class="text-xl font-serif font-bold">{{ honorable.data.title }}</h4>
+              <p class="text-gray-600">by {{ honorable.data.author }}</p>
+              <p class="text-gray-500">{{ honorable.content | striptags | truncate(150) }}</p>
+              <a href="{{ honorable.url }}" class="text-blue-600 hover:underline">Read Full Poem →</a>
             </div>
           </div>
         {% endif %}
       </div>
 
-      <h3>All Entries</h3>
-      <ul class="entries-list">
+      <h3 class="text-lg font-bold mt-6">All Entries</h3>
+      <ul class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mt-4">
         {% for poem in filteredPoems %}
-          <li>
-            <a href="{{ poem.url }}">
-              <div class="poem-card">
-                <h4 class="poem-card-title">{{ poem.data.title }}</h4>
-                <div class="poem-card-author">by {{ poem.data.author }}</div>
-                <p class="poem-card-preview">{{ poem.content | striptags | truncate(150) }}</p>
-              </div>
+          <li class="bg-white p-4 rounded-lg shadow-md">
+            <a href="{{ poem.url }}" class="block">
+              <h4 class="text-lg font-serif font-bold">{{ poem.data.title }}</h4>
+              <p class="text-gray-600">by {{ poem.data.author }}</p>
+              <p class="text-gray-500">{{ poem.content | striptags | truncate(150) }}</p>
             </a>
           </li>
         {% endfor %}
@@ -80,7 +78,7 @@
     </div>
   {% endfor %}
 
-  {{ content | safe}}
+  {{ content | safe }}
 </div>
 
 {% endblock %}

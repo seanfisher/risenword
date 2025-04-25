@@ -1,23 +1,23 @@
 {% extends "base.njk" %}
 
 {% block content %}
-<article class="poem" itemscope itemtype="http://schema.org/CreativeWork">
+<article class="bg-white p-6 rounded-lg shadow-md my-8" itemscope itemtype="http://schema.org/CreativeWork">
   <link itemprop="additionalType" href="https://dbpedia.org/ontology/Poem" />
-  <h2 itemprop="name">{{ title }}</h2>
-  <p class="author">By <span itemprop="author">{{ author }}</span></p>
-  <p class="date">Published <span itemprop="dateCreated">{{ page.date | date }}</span></p>
+  <h2 class="text-2xl font-serif font-bold text-center mb-2 text-text" itemprop="name">{{ title }}</h2>
+  <p class="text-lg text-gray-600 text-center mb-1">By <span itemprop="author">{{ author }}</span></p>
+  <p class="text-sm text-gray-500 text-center mb-4">Published <span itemprop="dateCreated">{{ page.date | date }}</span></p>
 
   {% if award == "winner" %}
-  <p class="badge winner">🏆 Winner - {{ category | capitalize }} {{ year }}</p>
+  <p class="bg-gradient-to-r from-yellow-400 to-yellow-300 text-gray-800 text-center py-2 px-4 rounded-full font-bold mb-4">🏆 Winner - {{ category | capitalize }} {{ year }}</p>
   {% elif award == "runner-up" %}
-  <p class="badge runner-up">🥈 Runner-Up - {{ category | capitalize }} {{ year }}</p>
+  <p class="bg-gradient-to-r from-gray-300 to-gray-200 text-gray-800 text-center py-2 px-4 rounded-full font-bold mb-4">🥈 Runner-Up - {{ category | capitalize }} {{ year }}</p>
   {% endif %}
-  
-  <pre class="poem-text" itemprop="text"><span>
+
+  <pre class="bg-gray-50 border-l-4 border-[#ff6f61] p-4 rounded text-gray-800 whitespace-pre-wrap" itemprop="text"><span>
       {{ content | safe }}
   </span></pre>
 
-  <div class="disclosure">
+  <div class="text-sm text-gray-500 text-center mt-4">
     {% if ai_use and "none" in ai_use %}
       <p><em>No AI assistance was used in the creation of this poem.</em></p>
     {% elif ai_use %}

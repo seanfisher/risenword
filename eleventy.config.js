@@ -1,9 +1,17 @@
 import { DateTime } from "luxon";
 import CleanCSS from "clean-css";
+import { execSync } from 'child_process';
+import postcssPlugin from "@jgarber/eleventy-plugin-postcss";
+
 
 function configureBuild(eleventyConfig) {
+  // Run Vite build before Eleventy
+  // eleventyConfig.on('beforeBuild', () => {
+  //   console.log('Running Vite build...');
+  //   execSync('npx vite build', { stdio: 'inherit' });
+  // });
+
   // ✅ Copy these files/folders to the _site output unchanged
-  eleventyConfig.addPassthroughCopy("styles.css");
   eleventyConfig.addPassthroughCopy("fonts");
   eleventyConfig.addPassthroughCopy("images");
 
@@ -79,6 +87,8 @@ function addCollections(eleventyConfig) {
 }
 
 export default async function (eleventyConfig) {
+  eleventyConfig.addPlugin(postcssPlugin);
+
   configureBuild(eleventyConfig);
   addCollections(eleventyConfig);
 }

@@ -1,6 +1,5 @@
-{% set css %}{% include "styles.css" %}{% endset %}
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="bg-background text-text font-crimson">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -11,38 +10,32 @@
     <meta property="og:url" content="{{ site.url }}{{ page.url }}">
     <meta name="generator" content="{{ eleventy.generator }}">
 
-    <!-- <link href="/styles.css" rel="stylesheet" /> -->
+    <link href="/assets/styles/index.css" rel="stylesheet" />
     <link rel="preload" href="/fonts/tan-mon-cheri.woff2" as="font" type="font/woff2" crossorigin />
     <link rel="preload" href="/fonts/BDScript-Regular.woff2" as="font" type="font/woff2" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Crimson+Text&display=swap" rel="stylesheet">
-
-    <style>
-      {{- css | safe -}}
-    </style>
   </head>
-<body>
-  <header class="{% if page.url != '/' %}header-compact{% endif %}">
+<body class="flex flex-col items-center">
+  <header class="w-full {% if page.url != '/' %}mt-5{% else %}mt-10{% endif %} text-center flex flex-col items-center">
     {% if page.url == '/' %}
-      <div class="title"><span class="title-pretext">The</span> RISEN WORD</div>
+      <div class="font-tan-mon-cheri text-4xl tracking-wide mb-2">
+        <span class="font-beautifully-delicious text-7xl mb-2 block">The</span> RISEN WORD
+      </div>
     {% endif %}
-    <div class="header-content">
+    <div class="w-full max-w-5xl flex justify-center items-center py-2">
       {% include "_partials/nav.njk" %}
     </div>
-    </header>
+  </header>
 
-  <main class="content">
+  <main class="w-11/12 max-w-3xl p-8 bg-white rounded-lg shadow-lg my-1">
     {% block content -%}{% endblock -%}
   </main>
 
-  <footer>
-    <p>
+  <footer class="mt-8 mb-16 p-4 text-center">
+    <p class="font-cursive text-sm text-[#ff6f61]">
       &copy; <script>document.write(new Date().getFullYear());</script> Seafish Productions.
       <i>Rejoice, for He is Risen.</i>
     </p>
-    <!-- <div class="illustration">
-      <img src="lily.svg" alt="An Easter lily" width="300">
-      <img src="tomb.png" alt="The garden tomb" width="300">
-    </div> -->
   </footer>
 </body>
 </html>
