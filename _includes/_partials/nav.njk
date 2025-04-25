@@ -1,62 +1,224 @@
 {% set currentYear = collections.contestYears | last %}
-{% if page.url != "/" %}
-  <a href="/" class="site-title"><span class="title-pretext">The</span> RISEN WORD</a>
-{% endif %}
-<nav class="site-nav">
-  <button class="hamburger-menu" aria-label="Toggle navigation menu">
-    <span></span>
-    <span></span>
-    <span></span>
-  </button>
-  <div class="nav-left">
-  </div>
-  <div class="nav-menu">
-    {% if currentYear %}
-      <a href="/contests/{{ currentYear }}">{{ currentYear }} Contest Results</a>
-    {% endif %}
-    <div class="dropdown">
-      <button class="dropbtn">Poems by Year</button>
-      <div class="dropdown-content">
-        {% for year in collections.contestYears %}
-          <a href="/years/{{ year }}">{{ year }}</a>
-        {% endfor %}
-      </div>
+
+<nav class="w-full max-w-5xl mx-auto px-6 sm:px-8 lg:px-10 {% if page.url == '/' %}mt-6{% else %}py-3{% endif %}">
+  <div class="relative flex items-center justify-between">
+    {# Wordmark - centered on homepage, left-aligned elsewhere #}
+    <div class="{% if page.url == '/' %}absolute left-1/2 transform -translate-x-1/2{% else %}flex-shrink-0{% endif %}">
+      {% if page.url != "/" %}
+        <a href="/" class="font-display text-text hover:text-accent">
+          <div class="font-tan-mon-cheri tracking-wide whitespace-nowrap">
+            <span class="font-beautifully-delicious text-2xl">The</span> RISEN WORD
+          </div>
+        </a>
+      {% endif %}
     </div>
-    
-    <div class="dropdown">
-      <button class="dropbtn">Poems by Category</button>
-      <div class="dropdown-content">
-        {% for category in collections.categories %}
-          <a href="/categories/{{ category | slugify }}/">{{ category }}</a>
-        {% endfor %}
+
+    {# Mobile menu button #}
+    <button 
+      type="button"
+      class="md:hidden inline-flex items-center justify-center p-3 text-[#2c2c2c]"
+      aria-controls="mobile-menu"
+      aria-expanded="false"
+      id="mobile-menu-button"
+    >
+      <span class="sr-only">Open main menu</span>
+      <div class="hamburger-menu">
+        <span class="block w-6 h-0.5 bg-current mb-1 transition-transform duration-200"></span>
+        <span class="block w-6 h-0.5 bg-current mb-1 transition-opacity duration-200"></span>
+        <span class="block w-6 h-0.5 bg-current transition-transform duration-200"></span>
       </div>
+    </button>
+
+    {# Desktop menu #}
+    <div class="hidden md:flex md:items-center md:space-x-6 {% if page.url == '/' %}justify-center w-full{% else %}justify-end{% endif %}">
+      {% if currentYear %}
+        <a href="/contests/{{ currentYear }}" class="text-lg text-[#2c2c2c] hover:text-[#ff6f61]">{{ currentYear }} Contest Results</a>
+      {% endif %}
+      
+      <div class="relative group">
+        <button 
+          type="button"
+          class="text-lg text-[#2c2c2c] hover:text-[#ff6f61] inline-flex items-center"
+          aria-expanded="false"
+          aria-haspopup="true"
+          data-dropdown-toggle
+        >
+          Poems by Year
+          <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+          </svg>
+        </button>
+        <div 
+          class="absolute left-0 hidden bg-white shadow-lg rounded mt-2 min-w-[150px] z-50"
+          role="menu"
+          data-dropdown-menu
+        >
+          {% for year in collections.contestYears %}
+            <a href="/years/{{ year }}" class="block px-4 py-2 text-[#2c2c2c] hover:bg-[#f9f7f3] hover:text-[#ff6f61]" role="menuitem">{{ year }}</a>
+          {% endfor %}
+        </div>
+      </div>
+
+      <div class="relative group">
+        <button 
+          type="button"
+          class="text-lg text-[#2c2c2c] hover:text-[#ff6f61] inline-flex items-center"
+          aria-expanded="false"
+          aria-haspopup="true"
+          data-dropdown-toggle
+        >
+          Poems by Category
+          <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+          </svg>
+        </button>
+        <div 
+          class="absolute left-0 hidden bg-white shadow-lg rounded mt-2 min-w-[150px] z-50"
+          role="menu"
+          data-dropdown-menu
+        >
+          {% for category in collections.categories %}
+            <a href="/categories/{{ category | slugify }}/" class="block px-4 py-2 text-[#2c2c2c] hover:bg-[#f9f7f3] hover:text-[#ff6f61]" role="menuitem">{{ category }}</a>
+          {% endfor %}
+        </div>
+      </div>
+
+      <a href="/poems" class="text-lg text-[#2c2c2c] hover:text-[#ff6f61]">All Poems</a>
+      <a href="/about" class="text-lg text-[#2c2c2c] hover:text-[#ff6f61]">About</a>
     </div>
-    <a href="/poems">All Poems</a>
-    <a href="/about">About</a>
+
+    {# Mobile menu panel #}
+    <div id="mobile-menu" class="hidden md:hidden absolute top-full left-0 right-0 bg-white shadow-lg rounded-b-lg mt-2 py-2 z-50 w-full">
+      {% if currentYear %}
+        <a href="/contests/{{ currentYear }}" class="block px-4 py-2 text-lg text-[#2c2c2c] hover:bg-[#f9f7f3] hover:text-[#ff6f61]">{{ currentYear }} Contest Results</a>
+      {% endif %}
+
+      <div class="mobile-dropdown">
+        <button class="w-full text-left px-4 py-2 text-lg text-[#2c2c2c] hover:bg-[#f9f7f3] hover:text-[#ff6f61] flex items-center justify-between" data-mobile-dropdown-toggle>
+          Poems by Year
+          <svg class="w-4 h-4 ml-1 transform transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+          </svg>
+        </button>
+        <div class="hidden bg-gray-50 py-1" data-mobile-dropdown-menu>
+          {% for year in collections.contestYears %}
+            <a href="/years/{{ year }}" class="block px-8 py-2 text-[#2c2c2c] hover:bg-[#f9f7f3] hover:text-[#ff6f61]">{{ year }}</a>
+          {% endfor %}
+        </div>
+      </div>
+
+      <div class="mobile-dropdown">
+        <button class="w-full text-left px-4 py-2 text-lg text-[#2c2c2c] hover:bg-[#f9f7f3] hover:text-[#ff6f61] flex items-center justify-between" data-mobile-dropdown-toggle>
+          Poems by Category
+          <svg class="w-4 h-4 ml-1 transform transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+          </svg>
+        </button>
+        <div class="hidden bg-gray-50 py-1" data-mobile-dropdown-menu>
+          {% for category in collections.categories %}
+            <a href="/categories/{{ category | slugify }}/" class="block px-8 py-2 text-[#2c2c2c] hover:bg-[#f9f7f3] hover:text-[#ff6f61]">{{ category }}</a>
+          {% endfor %}
+        </div>
+      </div>
+
+      <a href="/poems" class="block px-4 py-2 text-lg text-[#2c2c2c] hover:bg-[#f9f7f3] hover:text-[#ff6f61]">All Poems</a>
+      <a href="/about" class="block px-4 py-2 text-lg text-[#2c2c2c] hover:bg-[#f9f7f3] hover:text-[#ff6f61]">About</a>
+    </div>
   </div>
 </nav>
 
-<script>
-  document.querySelector('.hamburger-menu').addEventListener('click', function() {
-    this.classList.toggle('active');
-    document.querySelector('.nav-menu').classList.toggle('active');
-  });
+<style>
+  /* Hamburger menu animation styles */
+  .hamburger-menu.active span:first-child {
+    transform: translateY(8px) rotate(45deg);
+  }
+  .hamburger-menu.active span:nth-child(2) {
+    opacity: 0;
+  }
+  .hamburger-menu.active span:last-child {
+    transform: translateY(-8px) rotate(-45deg);
+  }
+</style>
 
-  // Handle mobile dropdown menus
-  if (window.matchMedia('(max-width: 768px)').matches) {
-    document.querySelectorAll('.dropdown .dropbtn').forEach(button => {
-      button.addEventListener('click', function(e) {
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const mobileMenuButton = document.getElementById('mobile-menu-button');
+    const mobileMenu = document.getElementById('mobile-menu');
+    const hamburgerIcon = document.querySelector('.hamburger-menu');
+    const mobileDropdownToggles = document.querySelectorAll('[data-mobile-dropdown-toggle]');
+
+    // Handle mobile menu toggle
+    mobileMenuButton.addEventListener('click', function() {
+      const isExpanded = this.getAttribute('aria-expanded') === 'true';
+      this.setAttribute('aria-expanded', !isExpanded);
+      hamburgerIcon.classList.toggle('active');
+      mobileMenu.classList.toggle('hidden');
+    });
+
+    // Handle mobile dropdowns
+    mobileDropdownToggles.forEach(toggle => {
+      toggle.addEventListener('click', function(e) {
         e.preventDefault();
-        const dropdown = this.closest('.dropdown');
-        
+        e.stopPropagation();
+
+        const menu = this.nextElementSibling;
+        const arrow = this.querySelector('svg');
+        const isExpanded = menu.classList.contains('hidden');
+
         // Close other dropdowns
-        document.querySelectorAll('.dropdown').forEach(d => {
-          if (d !== dropdown) d.classList.remove('active');
+        mobileDropdownToggles.forEach(otherToggle => {
+          if (otherToggle !== toggle) {
+            otherToggle.nextElementSibling.classList.add('hidden');
+            otherToggle.querySelector('svg').classList.remove('rotate-180');
+          }
         });
-        
+
         // Toggle current dropdown
-        dropdown.classList.toggle('active');
+        menu.classList.toggle('hidden');
+        arrow.classList.toggle('rotate-180');
       });
     });
-  }
+
+    // Handle desktop dropdowns (existing code)
+    document.addEventListener('click', function(e) {
+      if (!e.target.closest('[data-dropdown-toggle]') && !e.target.closest('[data-dropdown-menu]')) {
+        closeAllDropdowns();
+      }
+    });
+
+    // Handle dropdown toggle clicks
+    dropdownToggles.forEach(toggle => {
+      toggle.addEventListener('click', function(e) {
+        e.preventDefault();
+        e.stopPropagation();
+
+        const menu = this.nextElementSibling;
+        const isExpanded = this.getAttribute('aria-expanded') === 'true';
+
+        // Close all dropdowns first
+        closeAllDropdowns();
+
+        // Toggle the current dropdown
+        if (!isExpanded) {
+          this.setAttribute('aria-expanded', 'true');
+          menu.classList.remove('hidden');
+        }
+      });
+    });
+
+    // Handle keyboard navigation for dropdowns
+    dropdownToggles.forEach(toggle => {
+      toggle.addEventListener('keydown', function(e) {
+        const menu = this.nextElementSibling;
+
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          this.click();
+        } else if (e.key === 'Escape') {
+          this.setAttribute('aria-expanded', 'false');
+          menu.classList.add('hidden');
+        }
+      });
+    });
+  });
 </script>

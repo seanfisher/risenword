@@ -1,0 +1,35 @@
+@import "tailwindcss";
+
+
+@font-face {
+    font-family: 'TAN Mon Cheri';
+    src: url('/fonts/tan-mon-cheri.woff2') format('woff2'),
+        url('/fonts/tan-mon-cheri.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Beautifully Delicious';
+    src: local('Beautifully Delicious Script Regular'), local('Beautifully-Delicious-Script-Regular'),
+        url('/fonts/BDScript-Regular.woff2') format('woff2'),
+        url('/fonts/BDScript-Regular.woff') format('woff'),
+        url('/fonts/BDScript-Regular.ttf') format('truetype');
+    font-weight: 400;
+    font-style: normal;
+}
+
+@theme {
+    --color-background: "#f9f7f3";
+    --color-text: "#2c2c2c";
+    --color-accent: "#ff6f61";
+    --color-accentHover: "#c24035";
+    --color-grayLight: "#f9f7f3";
+    --color-grayDark: "#666";
+
+    --font-crimson: "Crimson Text", "sans-serif";
+    --font-beautifully-delicious: "Beautifully Delicious", "cursive";
+    --font-tan-mon-cheri: "TAN Mon Cheri", "serif";
+}
+
+
