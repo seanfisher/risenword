@@ -17,8 +17,7 @@
     font-style: normal;
 }
 
-/* Extracted styles */
-
+/* Base styles */
 body {
     background-color: #f9f7f3;
     font-family: 'Crimson Text', serif;
@@ -31,10 +30,184 @@ body {
     animation: fadeIn 1.5s ease-in;
 }
 
+/* Hamburger Menu */
+.hamburger-menu {
+    display: none;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 10px;
+    position: absolute;
+    right: 20px;
+    top: 20px;
+    z-index: 1000;
+}
+
+.hamburger-menu span {
+    display: block;
+    width: 25px;
+    height: 2px;
+    background-color: #2c2c2c;
+    margin: 5px 0;
+    transition: all 0.3s ease;
+}
+
+.hamburger-menu.active span:nth-child(1) {
+    transform: rotate(45deg) translate(5px, 5px);
+}
+
+.hamburger-menu.active span:nth-child(2) {
+    opacity: 0;
+}
+
+.hamburger-menu.active span:nth-child(3) {
+    transform: rotate(-45deg) translate(7px, -7px);
+}
+
+/* Header and Navigation Styles */
 header {
+    width: 100%;
     margin-top: 40px;
     text-align: center;
-    padding: 0 1rem;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+header.header-compact {
+    margin-top: 20px;
+}
+
+header.header-compact .header-content {
+    width: 98%;
+    max-width: 1200px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.5rem 0;
+}
+
+.header-compact .site-title {
+    display: flex;
+    align-items: baseline;
+    text-decoration: none;
+    color: inherit;
+    font-family: 'TAN Mon Cheri', serif;
+    font-size: 1.5rem;
+}
+
+.header-compact .site-title .title-pretext {
+    display: inline;
+    font-family: 'Beautifully Delicious', cursive;
+    font-size: 2rem;
+    margin-right: 0.5rem;
+}
+
+.site-nav {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    flex-grow: 1;
+}
+
+.header-compact .site-nav {
+    margin-top: 0;
+    justify-content: flex-end;
+}
+
+.nav-left {
+    display: flex;
+    align-items: center;
+}
+
+.nav-right {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.nav-right a {
+    text-decoration: none;
+    color: #2c2c2c;
+    font-size: 1.1rem;
+    transition: color 0.3s ease;
+    white-space: nowrap;
+    padding: 0.25rem 0.5rem;
+}
+
+.nav-right a:hover {
+    color: #ff6f61;
+}
+
+/* For home page */
+header:not(.header-compact) .site-nav {
+    width: 95%;
+    max-width: 900px;
+    justify-content: center;
+}
+
+/* Dropdown styles */
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropbtn {
+    background: none;
+    border: none;
+    font-family: inherit;
+    font-size: 1.1rem;
+    color: #2c2c2c;
+    cursor: pointer;
+    padding: 0.25rem 0.5rem;
+    transition: color 0.3s ease;
+    position: relative;
+    white-space: nowrap;
+    padding-right: 1.5em;
+}
+
+.dropbtn::after {
+    content: "▾";
+    position: absolute;
+    right: 0.3em;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 0.8em;
+}
+
+.dropbtn:hover {
+    color: #ff6f61;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: #fff;
+    min-width: 160px;
+    box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+    border-radius: 8px;
+    z-index: 1;
+    padding: 0.5rem 0;
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+.dropdown-content a {
+    color: #2c2c2c;
+    padding: 0.5rem 1rem;
+    text-decoration: none;
+    display: block;
+    transition: background-color 0.3s ease;
+}
+
+.dropdown-content a:hover {
+    background-color: #f9f7f3;
+    color: #ff6f61;
 }
 
 .title {
@@ -75,8 +248,10 @@ header {
     }
 }
 
+/* Content Styles */
 .content {
-    max-width: 700px;
+    width: 95%;
+    max-width: 900px;
     padding: 0 2rem 2rem 2rem;
     background-color: #fff;
     border-radius: 10px;
@@ -148,6 +323,36 @@ ul {
     background-color: #c24035;
 }
 
+/* Base Button Style */
+.button {
+    display: inline-block;
+    padding: 0.75rem 1.5rem;
+    font-family: 'Crimson Text', serif;
+    font-size: 1.4rem;
+    font-weight: 600;
+    text-decoration: none;
+    text-align: center;
+    color: #fff;
+    background-color: #ff6f61;
+    border: 2px solid #ff6f61;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.button:hover {
+    background-color: #fff;
+    color: #ff6f61;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+.button:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
 footer {
     margin-top: 2rem;
     padding: 1rem;
@@ -191,16 +396,402 @@ footer p {
     }
 }
 
+/* Poem Styles */
+.poem {
+    position: relative;
+    padding: 0;
+    margin: 1rem 0 0 0;
+    background: linear-gradient(to bottom right, #ffffff, #fdfbf7);
+    border: 1px solid #e6e1d6;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+}
+
+.poem h2 {
+    font-family: 'Crimson Text', serif;
+    font-size: 2.3rem;
+    color: #2c2c2c;
+    text-align: center;
+    margin-bottom: 0.5rem;
+    line-height: 1.2;
+    font-variant: small-caps;
+    letter-spacing: 0.05em;
+}
+
+.poem .author {
+    font-family: 'Beautifully Delicious', cursive;
+    font-size: 2.5rem;
+    color: #666;
+    text-align: center;
+    margin: 0.5rem 0;
+}
+
+.poem .date {
+    font-family: 'Crimson Text', serif;
+    font-size: 1rem;
+    color: #888;
+    text-align: center;
+    margin-bottom: 2rem;
+    font-style: italic;
+}
+
+.poem .poem-text {
+    position: relative;
+    padding: 0 2rem;
+    margin: 0rem 0;
+    background-color: #fdfbf7;
+    border-left: 4px solid #ff6f61;
+    font-family: 'Crimson Text', serif;
+    overflow-wrap: break-word;
+}
+
+.poem pre.poem-text {
+    white-space: pre-wrap;
+    /* font-family: inherit; */
+    color: #2c2c2c;
+}
+
+.poem pre.poem-text > p {
+    font-size: 1rem;
+    line-height: 1;
+}
+
+.poem .badge {
+    display: block;
+    width: fit-content;
+    padding: 0.5rem 1.2rem;
+    border-radius: 30px;
+    font-size: 1rem;
+    font-weight: bold;
+    text-align: center;
+    margin: 1rem auto;
+    transform: rotate(-2deg);
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.poem .badge.winner {
+    background: linear-gradient(135deg, #ffd700, #ffc800);
+    color: #2c2c2c;
+    border: 1px solid #e6c300;
+}
+
+.poem .badge.runner-up {
+    background: linear-gradient(135deg, #c0c0c0, #b3b3b3);
+    color: #2c2c2c;
+    border: 1px solid #a6a6a6;
+}
+
+.poem .disclosure {
+    margin-top: 0rem;
+    text-align: center;
+    font-size: 0.8rem;
+    color: #888;
+    padding: 0;
+}
+
+/* Contest Page Styles */
+.contest-year {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1rem;
+}
+
+.contest-section {
+    margin: 4rem 0;
+    padding: 2rem;
+    background: #fff;
+    border-radius: 16px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.03);
+}
+
+.contest-section h2 {
+    font-size: 2.8rem;
+    color: #2c2c2c;
+    text-align: center;
+    margin-bottom: 3rem;
+    font-weight: 400;
+    position: relative;
+}
+
+.contest-section h2::after {
+    content: "";
+    position: absolute;
+    bottom: -1rem;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 2px;
+    background: #ff6f61;
+}
+
+.awards-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+    justify-content: center;
+}
+
+.award-section {
+    flex: 1 1 calc(50% - 2rem);
+    max-width: calc(50% - 2rem);
+    box-sizing: border-box;
+}
+
+@media (max-width: 900px) {
+    .award-section {
+        flex: 1 1 100%;
+        max-width: 100%;
+    }
+}
+
+.award-section h3 {
+    font-size: 1.8rem;
+    color: #2c2c2c;
+    margin-bottom: 2rem;
+    text-align: center;
+}
+
+.award-section h3.winner-title {
+    color: #b4833e;
+}
+
+.award-section h3.honorable-title {
+    color: #717171;
+}
+
+.entries-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+    gap: 1.5rem;
+    list-style: none;
+    padding: 0;
+    margin: 2rem 0;
+}
+
+.entries-list li {
+    margin: 0;
+}
+
+.poem-card {
+    background: #fff;
+    border: 1px solid #e6e1d6;
+    border-radius: 12px;
+    padding: 1.5rem;
+    transition: all 0.3s ease;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    text-decoration: none;
+}
+
+.poem-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+    border-color: #ff6f61;
+}
+
+.poem-card-title {
+    font-family: 'Crimson Text', serif;
+    font-size: 1.4rem;
+    color: #2c2c2c;
+    margin-bottom: 0.5rem;
+    line-height: 1.2;
+}
+
+.poem-card-author {
+    font-family: 'Beautifully Delicious', cursive;
+    font-size: 1.8rem;
+    color: #666;
+    margin: 0.5rem 0;
+}
+
+.poem-card-preview {
+    font-family: 'Crimson Text', serif;
+    font-size: 1rem;
+    color: #666;
+    line-height: 1.6;
+    margin: 1rem 0;
+    flex-grow: 1;
+    text-decoration: none;
+}
+
+.poem-card-link {
+    display: inline-block;
+    color: #ff6f61;
+    text-decoration: none;
+    font-weight: 500;
+    margin-top: auto;
+    font-size: 0.9rem;
+}
+
+.poem-card-link:hover {
+    text-decoration: underline;
+}
+
+/* Responsive adjustments */
+@media (max-width: 900px) {
+    .hamburger-menu {
+        display: block;
+    }
+
+    .nav-menu {
+        display: none;
+        position: absolute;
+        top: 70px;
+        left: 0;
+        right: 0;
+        background-color: #fff;
+        padding: 1rem;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        border-radius: 0 0 8px 8px;
+        z-index: 999;
+    }
+
+    .nav-menu.active {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 1rem;
+    }
+
+    .nav-menu .dropdown {
+        width: 100%;
+    }
+
+    .nav-menu .dropbtn {
+        width: 100%;
+        text-align: center;
+    }
+
+    .nav-menu .dropdown-content {
+        position: static;
+        box-shadow: none;
+        width: 100%;
+        display: none;
+    }
+
+    .nav-menu .dropdown:hover .dropdown-content {
+        display: none;
+    }
+
+    .nav-menu .dropdown.active .dropdown-content {
+        display: block;
+    }
+
+    .nav-menu a {
+        width: 100%;
+        text-align: center;
+    }
+
+    .awards-container {
+        grid-template-columns: 1fr;
+    }
+    
+    .entries-list {
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    }
+
+    .entries-list {
+        columns: 1;
+    }
+
+    .content {
+        width: 90%;
+        max-width: 700px;
+        padding: 0 1.5rem 1.5rem 1.5rem;
+        margin: 1.5rem 0.5rem;
+    }
+
+    .poem {
+        padding: 1.5rem;
+        margin: 1.5rem 0;
+    }
+
+    .poem h2 {
+        font-size: 2.2rem;
+    }
+
+    .poem pre.poem-text {
+        font-size: 1rem;
+        line-height: 1.6;
+    }
+
+    header.header-compact {
+        flex-direction: column;
+        padding: 0.5rem 0;
+    }
+
+    .site-nav {
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    .nav-right {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 1rem;
+    }
+
+    .dropdown-content {
+        left: 50%;
+        transform: translateX(-50%);
+    }
+
+    .contest-section {
+        margin: 2rem 0;
+        padding: 1.5rem;
+    }
+
+    .contest-section h2 {
+        font-size: 2.2rem;
+    }
+
+    .award-section {
+        padding: 1.5rem;
+    }
+
+    .poem-card {
+        padding: 1.2rem;
+    }
+
+    .poem-card-title {
+        font-size: 1.2rem;
+    }
+
+    .poem-card-author {
+        font-size: 1.6rem;
+    }
+}
+
 @media (max-width: 600px) {
     .title {
         font-size: 2rem;
     }
 
     .content {
-        padding: 0 1.5rem 1.5rem 1.5rem;
+        width: 85%;
+        padding: 0 1rem 1rem 1rem;
+        margin: 1rem 0.25rem;
     }
 
     .theme {
         font-size: 2.5em;
+    }
+
+    .poem {
+        padding: 1rem;
+        margin: 1rem 0;
+    }
+
+    .poem h2 {
+        font-size: 2rem;
+    }
+
+    .poem .poem-text {
+        font-size: 1rem;
+    }
+
+    .entries-list {
+        grid-template-columns: 1fr;
     }
 }

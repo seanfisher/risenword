@@ -1,5 +1,4 @@
-{% set css %} {% include "styles.css" %} {% endset %}
-
+{% set css %}{% include "styles.css" %}{% endset %}
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -18,16 +17,21 @@
     <link href="https://fonts.googleapis.com/css2?family=Crimson+Text&display=swap" rel="stylesheet">
 
     <style>
-        {{ css | cssmin | safe }}
+      {{- css | safe -}}
     </style>
   </head>
 <body>
-  <header>
-    <div class="title"><span class="title-pretext">The</span> RISEN WORD</div>
-  </header>
+  <header class="{% if page.url != '/' %}header-compact{% endif %}">
+    {% if page.url == '/' %}
+      <div class="title"><span class="title-pretext">The</span> RISEN WORD</div>
+    {% endif %}
+    <div class="header-content">
+      {% include "_partials/nav.njk" %}
+    </div>
+    </header>
 
   <main class="content">
-    {% block content %}{% endblock %}
+    {% block content -%}{% endblock -%}
   </main>
 
   <footer>
@@ -40,36 +44,5 @@
       <img src="tomb.png" alt="The garden tomb" width="300">
     </div> -->
   </footer>
-  <script>
-    const countdown = document.getElementById('countdown');
-    const submitBtn = document.getElementById('submitBtn');
-    const deadline = new Date('April 19, 2025 00:00:00').getTime(); // 11:59 PM on April 18
-
-    function setTime() {
-      const now = new Date().getTime();
-      const distance = deadline - now;
-
-      if (distance < 0) {
-        clearInterval(x);
-        countdown.innerHTML = "Submissions are now closed.";
-        if (submitBtn) {
-          submitBtn.style.display = 'none';
-        }
-        return;
-      }
-
-      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-      const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-
-      countdown.innerHTML = `Be sure to submit by the deadline: ${days}d ${hours}h ${minutes}m left!`;
-    }
-
-    const x = setInterval(() => {
-      setTime();
-    }, 60000);
-
-    setTime();
-  </script>
 </body>
 </html>

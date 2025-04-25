@@ -1,0 +1,62 @@
+{% set currentYear = collections.contestYears | last %}
+{% if page.url != "/" %}
+  <a href="/" class="site-title"><span class="title-pretext">The</span> RISEN WORD</a>
+{% endif %}
+<nav class="site-nav">
+  <button class="hamburger-menu" aria-label="Toggle navigation menu">
+    <span></span>
+    <span></span>
+    <span></span>
+  </button>
+  <div class="nav-left">
+  </div>
+  <div class="nav-menu">
+    {% if currentYear %}
+      <a href="/contests/{{ currentYear }}">{{ currentYear }} Contest Results</a>
+    {% endif %}
+    <div class="dropdown">
+      <button class="dropbtn">Poems by Year</button>
+      <div class="dropdown-content">
+        {% for year in collections.contestYears %}
+          <a href="/years/{{ year }}">{{ year }}</a>
+        {% endfor %}
+      </div>
+    </div>
+    
+    <div class="dropdown">
+      <button class="dropbtn">Poems by Category</button>
+      <div class="dropdown-content">
+        {% for category in collections.categories %}
+          <a href="/categories/{{ category | slugify }}/">{{ category }}</a>
+        {% endfor %}
+      </div>
+    </div>
+    <a href="/poems">All Poems</a>
+    <a href="/about">About</a>
+  </div>
+</nav>
+
+<script>
+  document.querySelector('.hamburger-menu').addEventListener('click', function() {
+    this.classList.toggle('active');
+    document.querySelector('.nav-menu').classList.toggle('active');
+  });
+
+  // Handle mobile dropdown menus
+  if (window.matchMedia('(max-width: 768px)').matches) {
+    document.querySelectorAll('.dropdown .dropbtn').forEach(button => {
+      button.addEventListener('click', function(e) {
+        e.preventDefault();
+        const dropdown = this.closest('.dropdown');
+        
+        // Close other dropdowns
+        document.querySelectorAll('.dropdown').forEach(d => {
+          if (d !== dropdown) d.classList.remove('active');
+        });
+        
+        // Toggle current dropdown
+        dropdown.classList.toggle('active');
+      });
+    });
+  }
+</script>

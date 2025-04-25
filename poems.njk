@@ -2,9 +2,11 @@
 title: All Poems
 layout: layout.njk
 ---
-{% set sortedPoems = collections.poems | sort("page.date") | reverse %}
+{% from "macros/poems.njk" import poemTitle %}
+{% set sortedPoems = collections.poems | sort("data.title", reverse=false) | sort("page.date", reverse=true) %}
+<em>Alphabetically by date.</em>
 <ul>
 {% for poem in sortedPoems %}
-  <li><a href="{{ poem.url }}">{{ poem.data.title }}</a> by {{ poem.data.author }} ({{ poem.data.year }})</li>
+  <li><a href="{{ poem.url }}">{{ poemTitle(poem) }}</a> by {{ poem.data.author }} ({{ poem.data.year }})</li>
 {% endfor %}
 </ul>

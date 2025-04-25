@@ -5,7 +5,7 @@
   <link itemprop="additionalType" href="https://dbpedia.org/ontology/Poem" />
   <h2 itemprop="name">{{ title }}</h2>
   <p class="author">By <span itemprop="author">{{ author }}</span></p>
-  <p class="date">Published <span itemprop="dateCreated">{{ page.date }}</span></p>
+  <p class="date">Published <span itemprop="dateCreated">{{ page.date | date }}</span></p>
 
   {% if award == "winner" %}
   <p class="badge winner">🏆 Winner - {{ category | capitalize }} {{ year }}</p>
@@ -13,16 +13,19 @@
   <p class="badge runner-up">🥈 Runner-Up - {{ category | capitalize }} {{ year }}</p>
   {% endif %}
   
-  <p class="poem-text">
-    <pre itemprop="text">
+  <pre class="poem-text" itemprop="text"><span>
       {{ content | safe }}
-    </pre>
-  </p>
+  </span></pre>
 
-  <footer class="disclosure">
-    <p><em>{{ ai_disclosure }}</em></p>
-  </footer>
+  <div class="disclosure">
+    {% if ai_use and "none" in ai_use %}
+      <p><em>No AI assistance was used in the creation of this poem.</em></p>
+    {% elif ai_use %}
+      <p><em>The author used AI for {{ ai_use | join(', ') }}.</em></p>
+    {% else %}
+      <p><em>No AI assistance information provided.</em></p>
+    {% endif %}
+  </div>
 </article>
-
 
 {% endblock %}
