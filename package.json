@@ -21,7 +21,6 @@
   "dependencies": {
     "@11ty/eleventy": "^3.0.0",
     "@tailwindcss/postcss": "^4.1.4",
-    "@tailwindcss/vite": "^4.1.4",
     "clean-css": "^5.3.3"
   },
   "devDependencies": {
