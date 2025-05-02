@@ -83,6 +83,30 @@
         </div>
       </div>
 
+      <div class="relative group">
+        <button 
+          type="button"
+          class="text-lg text-[#2c2c2c] hover:text-[#ff6f61] inline-flex items-center"
+          aria-expanded="false"
+          aria-haspopup="true"
+          data-dropdown-toggle
+        >
+          Poems by Author
+          <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+          </svg>
+        </button>
+        <div 
+          class="absolute left-0 hidden bg-white shadow-lg rounded mt-2 min-w-[150px] z-50"
+          role="menu"
+          data-dropdown-menu
+        >
+          {% for author in collections.authors %}
+            <a href="/authors/{{ author | slugify }}/" class="block px-4 py-2 text-[#2c2c2c] hover:bg-[#f9f7f3] hover:text-[#ff6f61]" role="menuitem">{{ author }}</a>
+          {% endfor %}
+        </div>
+      </div>
+
       <a href="/poems" class="text-lg text-[#2c2c2c] hover:text-[#ff6f61]">All Poems</a>
     </div>
 
@@ -116,6 +140,20 @@
         <div class="hidden bg-gray-50 py-1" data-mobile-dropdown-menu>
           {% for category in collections.categories %}
             <a href="/categories/{{ category | slugify }}/" class="block px-8 py-2 text-[#2c2c2c] hover:bg-[#f9f7f3] hover:text-[#ff6f61]">{{ category }}</a>
+          {% endfor %}
+        </div>
+      </div>
+
+      <div class="mobile-dropdown">
+        <button class="w-full text-left px-4 py-2 text-lg text-[#2c2c2c] hover:bg-[#f9f7f3] hover:text-[#ff6f61] flex items-center justify-between" data-mobile-dropdown-toggle>
+          Poems by Author
+          <svg class="w-4 h-4 ml-1 transform transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+          </svg>
+        </button>
+        <div class="hidden bg-gray-50 py-1" data-mobile-dropdown-menu>
+          {% for author in collections.authors %}
+            <a href="/authors/{{ author | slugify }}/" class="block px-8 py-2 text-[#2c2c2c] hover:bg-[#f9f7f3] hover:text-[#ff6f61]">{{ author }}</a>
           {% endfor %}
         </div>
       </div>

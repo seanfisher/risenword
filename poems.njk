@@ -3,7 +3,7 @@ title: All Poems
 layout: layout.njk
 ---
 {% from "_macros/poems.njk" import poemListItem %}
-{% set sortedPoems = collections.poems | sort("data.title", reverse=false) | sort("page.date", reverse=true) %}
+{% set sortedPoems = collections.poems %}
 <h1 class="text-3xl font-serif font-bold text-center mb-4">All Poems</h1>
 <em class="block text-center text-gray-500 mb-4">Alphabetically</em>
 <ul class="space-y-2">

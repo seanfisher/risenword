@@ -5,7 +5,12 @@
 {% import "./_macros/poem-preview.njk" as poemPreview %}
 {% set poems = collections.poemsByYear[year] | default([]) %}
 <div class="max-w-5xl mx-auto px-4">
+
+  {# Add contest theme at the top #}
   <h1 class="text-4xl font-serif font-bold text-center my-8">{{ title }}</h1>
+  {% if theme %}
+    <p class="text-lg text-center text-gray-600 mb-8">Theme: <span class="font-semibold">{{ theme }}</span></p>
+  {% endif %}
 
   {# Build dynamic unique list of categories #}
   {% set categories = [] %}
@@ -67,16 +72,18 @@
         {% endif %}
       </div>
 
-      <h3 class="text-lg font-bold mt-6">All Entries</h3>
+      <h3 class="text-lg font-bold mt-6">All Other Entries</h3>
       <ul class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mt-4">
         {% for poem in filteredPoems %}
-          <li class="bg-white p-4 rounded-lg shadow-md">
-            <a href="{{ poem.url }}" class="block">
-              <h4 class="text-lg font-serif font-bold">{{ poem.data.title }}</h4>
-              <p class="text-gray-600">by {{ poem.data.author }}</p>
-              <p class="text-gray-500">{{ poem.content | striptags | truncate(150) }}</p>
-            </a>
-          </li>
+          {% if poem != winner and runnersUp.indexOf(poem) == -1 %}
+            <li class="bg-white p-4 rounded-lg shadow-md">
+              <a href="{{ poem.url }}" class="block">
+                <h4 class="text-lg font-serif font-bold">{{ poem.data.title }}</h4>
+                <p class="text-gray-600">by {{ poem.data.author }}</p>
+                <p class="text-gray-500">{{ poem.content | striptags | truncate(150) }}</p>
+              </a>
+            </li>
+          {% endif %}
         {% endfor %}
       </ul>
     </div>

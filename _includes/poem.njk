@@ -26,6 +26,21 @@
       <p><em>No AI assistance information provided.</em></p>
     {% endif %}
   </div>
+
+  {% set poems = collections.poems %}
+  {% set currentIndex = poems | index(page) %}
+
+  <div class="flex justify-between mt-6">
+    {% if currentIndex > 0 %}
+    <a href="{{ poems[currentIndex - 1].url }}" class="text-blue-500 hover:underline">&larr; Previous Poem</a>
+    {% else %}
+    <div></div> <!-- Placeholder to maintain alignment -->
+    {% endif %}
+
+    {% if currentIndex < poems | length - 1 %}
+    <a href="{{ poems[currentIndex + 1].url }}" class="text-blue-500 hover:underline">Next Poem &rarr;</a>
+    {% endif %}
+  </div>
 </article>
 
 {% endblock %}

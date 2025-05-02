@@ -3,6 +3,15 @@ import CleanCSS from "clean-css";
 import { execSync } from 'child_process';
 import postcssPlugin from "@jgarber/eleventy-plugin-postcss";
 
+// Utility function to sort poems by title, ignoring stopwords
+function sortPoemsByTitle(poems) {
+  const stopWordsRegex = /^(a |an |the |and |but |or |for |nor |on |at |to |from |by )/i;
+  return poems.sort((a, b) => {
+    const titleA = a.data.title.toLowerCase().replace(stopWordsRegex, "").trim();
+    const titleB = b.data.title.toLowerCase().replace(stopWordsRegex, "").trim();
+    return titleA.localeCompare(titleB);
+  });
+}
 
 function configureBuild(eleventyConfig) {
   // Run Vite build before Eleventy
@@ -37,13 +46,17 @@ function configureBuild(eleventyConfig) {
       }).toFormat(format);
     }
   });
+
+  eleventyConfig.addFilter("index", (array, item) => {
+    return array.findIndex(i => i.url === item.url);
+  });
 }
 
 function addCollections(eleventyConfig) {
-  // All poems collection
-  eleventyConfig.addCollection("poems", collection =>
-    collection.getFilteredByGlob("poems/**/*.md")
-  );
+  // All poems collection, sorted by title ignoring common stop words
+  eleventyConfig.addCollection("poems", collection => {
+    return sortPoemsByTitle(collection.getFilteredByGlob("poems/**/*.md"));
+  });
 
   // Contest years dynamically (2025, etc.)
   eleventyConfig.addCollection("contestYears", collection => {
@@ -83,6 +96,29 @@ function addCollections(eleventyConfig) {
       (map.get(c) || map.set(c, []).get(c)).push(p);
     });
     return Object.fromEntries(map.entries());
+  });
+
+  // Group by author
+  eleventyConfig.addCollection("poemsByAuthor", collection => {
+    const map = new Map();
+    collection.getFilteredByGlob("poems/**/*.md").forEach(p => {
+      const author = p.data.author;
+      if (!author) return;
+      (map.get(author) || map.set(author, []).get(author)).push(p);
+    });
+    for (const [key, poems] of map.entries()) {
+      map.set(key, sortPoemsByTitle(poems));
+    };
+    return Object.fromEntries(map.entries());
+  });
+
+  // List of unique authors, sorted alphabetically
+  eleventyConfig.addCollection("authors", collection => {
+    const set = new Set();
+    collection.getFilteredByGlob("poems/**/*.md").forEach(p => {
+      if (p.data.author) set.add(p.data.author);
+    });
+    return [...set].sort((a, b) => a.localeCompare(b));
   });
 }
 

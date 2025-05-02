@@ -1,0 +1,19 @@
+---
+pagination:
+  data: collections.poemsByAuthor      # the object you build in .eleventy.js
+  size: 1                              # one author per page
+  alias: author                        # current item is now “author”
+permalink: "/authors/{{ author | slugify }}/"
+layout: layout.njk
+---
+
+{% from "_macros/poems.njk" import poemListItem %}
+
+<h1 class="text-3xl font-serif font-bold text-center mb-4">Poems by {{ author }}</h1>
+<em class="block text-center text-gray-500 mb-4">Alphabetically</em>
+
+<ul class="list-disc list-inside space-y-2">
+{% for poem in collections.poemsByAuthor[author] %}
+  {{ poemListItem(poem) }}
+{% endfor %}
+</ul>
