@@ -7,18 +7,14 @@ permalink: "/years/{{ contestYear | slugify }}/"
 layout: layout.njk
 ---
 
+{% from "_macros/poems.njk" import poemListItem %}
 {% set sortedPoems = collections.poemsByYear[contestYear] | sort("data.title", reverse=false) | sort("page.date", reverse=true) %}
 
-
-<h1 class="text-3xl font-serif font-bold text-center mb-4">Contest Year: {{ contestYear }}</h1>
+<h1 class="text-3xl font-serif font-bold text-center mb-4">Easter Poems Written In {{ contestYear }}</h1>
 <em class="block text-center text-gray-500 mb-4">Alphabetically</em>
 
 <ul class="list-disc list-inside space-y-2">
 {% for poem in sortedPoems %}
-  <li class="text-lg">
-    <a href="{{ poem.url }}" class="text-blue-600 hover:underline">
-      {% if poem.data.award === "winner" %}🥇 {% endif %}{% if poem.data.award === "runner-up" %}🥈 {% endif %}{{ poem.data.title }} by {{ poem.data.author }}
-    </a>
-  </li>
+  {{ poemListItem(poem) }}
 {% endfor %}
 </ul>

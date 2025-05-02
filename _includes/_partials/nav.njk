@@ -84,7 +84,6 @@
       </div>
 
       <a href="/poems" class="text-lg text-[#2c2c2c] hover:text-[#ff6f61]">All Poems</a>
-      <a href="/about" class="text-lg text-[#2c2c2c] hover:text-[#ff6f61]">About</a>
     </div>
 
     {# Mobile menu panel #}
@@ -122,7 +121,6 @@
       </div>
 
       <a href="/poems" class="block px-4 py-2 text-lg text-[#2c2c2c] hover:bg-[#f9f7f3] hover:text-[#ff6f61]">All Poems</a>
-      <a href="/about" class="block px-4 py-2 text-lg text-[#2c2c2c] hover:bg-[#f9f7f3] hover:text-[#ff6f61]">About</a>
     </div>
   </div>
 </nav>
@@ -146,6 +144,7 @@
     const mobileMenu = document.getElementById('mobile-menu');
     const hamburgerIcon = document.querySelector('.hamburger-menu');
     const mobileDropdownToggles = document.querySelectorAll('[data-mobile-dropdown-toggle]');
+    const dropdownToggles = document.querySelectorAll('[data-dropdown-toggle]');
 
     // Handle mobile menu toggle
     mobileMenuButton.addEventListener('click', function() {
@@ -220,5 +219,16 @@
         }
       });
     });
+
+    function closeAllDropdowns() {
+      const dropdownMenus = document.querySelectorAll('[data-dropdown-menu]');
+      dropdownMenus.forEach(menu => {
+        menu.classList.add('hidden');
+        const toggle = menu.previousElementSibling;
+        if (toggle) {
+          toggle.setAttribute('aria-expanded', 'false');
+        }
+      });
+    }
   });
 </script>

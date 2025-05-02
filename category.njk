@@ -7,19 +7,14 @@ permalink: "/categories/{{ cat | slugify }}/"
 layout: layout.njk
 ---
 
-{% from "macros/poems.njk" import poemTitle %}
+{% from "_macros/poems.njk" import poemListItem %}
 {% set sortedPoems = collections.poemsByCategory[cat] | sort("data.title", reverse=false) | sort("page.date", reverse=true) %}
-
 
 <h1 class="text-3xl font-serif font-bold text-center mb-4">Category: {{ cat }}</h1>
 <em class="block text-center text-gray-500 mb-4">Alphabetically</em>
 
 <ul class="list-disc list-inside space-y-2">
 {% for poem in sortedPoems %}
-  <li class="text-lg">
-    <a href="{{ poem.url }}" class="text-blue-600 hover:underline">
-      {{ poemTitle(poem) }} by {{ poem.data.author }}
-    </a>
-  </li>
+  {{ poemListItem(poem) }}
 {% endfor %}
 </ul>
