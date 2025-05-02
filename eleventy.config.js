@@ -24,6 +24,15 @@ function configureBuild(eleventyConfig) {
   eleventyConfig.addPassthroughCopy("fonts");
   eleventyConfig.addPassthroughCopy("images");
 
+  // Copy specific static files to the output directory
+  eleventyConfig.addPassthroughCopy("android-chrome-192x192.png");
+  eleventyConfig.addPassthroughCopy("android-chrome-512x512.png");
+  eleventyConfig.addPassthroughCopy("apple-touch-icon.png");
+  eleventyConfig.addPassthroughCopy("favicon-16x16.png");
+  eleventyConfig.addPassthroughCopy("favicon-32x32.png");
+  eleventyConfig.addPassthroughCopy("favicon.ico");
+  eleventyConfig.addPassthroughCopy("site.webmanifest");
+
   // ✅ Add a filter to minify CSS
   eleventyConfig.addFilter("cssmin", function (code) {
     return new CleanCSS({}).minify(code).styles;
