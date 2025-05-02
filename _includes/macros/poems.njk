@@ -1,5 +1,0 @@
-{% macro poemTitle(poem, showMedal=true) %}
-  {%- if showMedal and poem.data.award === "winner" %}🥇 {% endif -%}
-  {%- if showMedal and poem.data.award === "runner-up" %}🥈 {% endif -%}
-  {{- poem.data.title -}}
-{% endmacro %}

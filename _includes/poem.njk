@@ -1,7 +1,7 @@
 {% extends "base.njk" %}
 
 {% block content %}
-<article class="bg-white p-6 rounded-lg shadow-md my-8" itemscope itemtype="http://schema.org/CreativeWork">
+<article class="bg-white px-6 pb-6 pt-2 rounded-lg shadow-md my-1" itemscope itemtype="http://schema.org/CreativeWork">
   <link itemprop="additionalType" href="https://dbpedia.org/ontology/Poem" />
   <h2 class="text-2xl font-serif font-bold text-center mb-2 text-text" itemprop="name">{{ title }}</h2>
   <p class="text-lg text-gray-600 text-center mb-1">By <span itemprop="author">{{ author }}</span></p>
@@ -13,7 +13,7 @@
   <p class="bg-gradient-to-r from-gray-300 to-gray-200 text-gray-800 text-center py-2 px-4 rounded-full font-bold mb-4">🥈 Runner-Up - {{ category | capitalize }} {{ year }}</p>
   {% endif %}
 
-  <pre class="bg-gray-50 border-l-4 border-[#ff6f61] p-4 rounded text-gray-800 whitespace-pre-wrap" itemprop="text"><span>
+  <pre class="bg-gray-50 border-l-4 border-[#ff6f61] px-4 mt-1 rounded text-gray-800 whitespace-pre-line font-crimson text-xl" itemprop="text"><span>
       {{ content | safe }}
   </span></pre>
 
