@@ -5,7 +5,7 @@ layout: poem.njk
 date: 2025-04-20
 year: 2025
 category: Long Form
-# award: winner # values: winner, runner-up, or omitted
+award: runner-up # values: winner, runner-up, or omitted
 ai_use: # values: none, revision, drafting, composition
  - none 
 tags: ["2025", "long-form"] #, "winner"]
