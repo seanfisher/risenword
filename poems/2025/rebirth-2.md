@@ -1,5 +1,5 @@
 ---
-title: "Rebirth"
+title: "Easter's Miracle"
 author: "Sean Fisher"
 layout: poem.njk
 date: 2025-05-01
