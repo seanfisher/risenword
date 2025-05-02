@@ -7,7 +7,7 @@
 
 {% macro poemListItem(poem) %}
 <li class="flex items-start">
-  <a href="{{ poem.url }}" class="ml-3 text-accent hover:text-accentHover hover:underline">
+  <a href="{{ poem.url }}" class="ml-3 text-accent hover:text-accentHover hover:underline visited:text-[#d9534f]">
     <h3 class="text-lg font-medium">
       {{ poemTitle(poem, showMedal=true) }}
       <span class="text-sm text-gray-500 font-normal">by {{ poem.data.author }}{% if poem.data.year %} ({{ poem.data.year }}){% endif %}</span>
