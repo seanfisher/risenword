@@ -3,7 +3,7 @@ title: "Empty Tomb"
 author: "Sean Fisher"
 layout: poem.njk
 date: 2025-05-01
-year: 2025
+year: # No year because this one wasn't entered in the contest
 category: Short Form
 # award: runner-up # values: winner, runner-up, or omitted
 ai_use: # values: none, revision, drafting, composition
