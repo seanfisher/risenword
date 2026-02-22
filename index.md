@@ -32,7 +32,7 @@ layout: home.njk
     </div>
 
     <div class="flex justify-center">
-      <a href="/contests/2026" class="inline-flex items-center justify-center bg-accent text-white font-bold py-3 px-8 rounded-lg hover:bg-accentHover transition focus:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2">Enter the Contest</a>
+      <a href="/contests/2026" class="inline-flex items-center justify-center bg-accent text-white font-bold py-3 px-8 rounded-lg hover:bg-accentHover transition focus:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2">See Details</a>
     </div>
 
     <p class="mt-10 text-accent font-semibold text-base tracking-wide">
