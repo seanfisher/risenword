@@ -16,7 +16,7 @@
     {# Mobile menu button #}
     <button 
       type="button"
-      class="md:hidden inline-flex items-center justify-center p-3 text-[#2c2c2c]"
+      class="lg:hidden inline-flex items-center justify-center p-3 text-[#2c2c2c]"
       aria-controls="mobile-menu"
       aria-expanded="false"
       id="mobile-menu-button"
@@ -30,15 +30,15 @@
     </button>
 
     {# Desktop menu #}
-    <div class="hidden md:flex md:items-center md:space-x-6 {% if page.url == '/' %}justify-center w-full{% else %}justify-end{% endif %}">
+    <div class="hidden lg:flex lg:items-center gap-5 flex-nowrap {% if page.url == '/' %}justify-center w-full{% else %}justify-end{% endif %}">
       {% if currentYear %}
-        <a href="/contests/{{ currentYear }}" class="text-lg text-[#2c2c2c] hover:text-[#ff6f61]">{{ currentYear }} Contest Results</a>
+        <a href="/contests/{{ currentYear }}" class="text-base whitespace-nowrap text-[#2c2c2c] hover:text-[#ff6f61]">{{ currentYear }} Contest</a>
       {% endif %}
       
       <div class="relative group">
         <button 
           type="button"
-          class="text-lg text-[#2c2c2c] hover:text-[#ff6f61] inline-flex items-center"
+          class="text-base whitespace-nowrap text-[#2c2c2c] hover:text-[#ff6f61] inline-flex items-center"
           aria-expanded="false"
           aria-haspopup="true"
           data-dropdown-toggle
@@ -62,7 +62,7 @@
       <div class="relative group">
         <button 
           type="button"
-          class="text-lg text-[#2c2c2c] hover:text-[#ff6f61] inline-flex items-center"
+          class="text-base whitespace-nowrap text-[#2c2c2c] hover:text-[#ff6f61] inline-flex items-center"
           aria-expanded="false"
           aria-haspopup="true"
           data-dropdown-toggle
@@ -86,7 +86,7 @@
       <div class="relative group">
         <button 
           type="button"
-          class="text-lg text-[#2c2c2c] hover:text-[#ff6f61] inline-flex items-center"
+          class="text-base whitespace-nowrap text-[#2c2c2c] hover:text-[#ff6f61] inline-flex items-center"
           aria-expanded="false"
           aria-haspopup="true"
           data-dropdown-toggle
@@ -107,13 +107,15 @@
         </div>
       </div>
 
-      <a href="/poems" class="text-lg text-[#2c2c2c] hover:text-[#ff6f61]">All Poems</a>
+      <a href="/poems" class="text-base whitespace-nowrap text-[#2c2c2c] hover:text-[#ff6f61]">All Poems</a>
+
+      <a href="/contests/2026" class="text-base whitespace-nowrap text-white bg-accent hover:bg-accentHover px-4 py-2 rounded-lg transition font-semibold">Enter the Contest</a>
     </div>
 
     {# Mobile menu panel #}
-    <div id="mobile-menu" class="hidden md:hidden absolute top-full left-0 right-0 bg-white shadow-lg rounded-b-lg mt-2 py-2 z-50 w-full">
+    <div id="mobile-menu" class="hidden lg:hidden absolute top-full left-0 right-0 bg-white shadow-lg rounded-b-lg mt-2 py-2 z-50 w-full">
       {% if currentYear %}
-        <a href="/contests/{{ currentYear }}" class="block px-4 py-2 text-lg text-[#2c2c2c] hover:bg-[#f9f7f3] hover:text-[#ff6f61]">{{ currentYear }} Contest Results</a>
+        <a href="/contests/{{ currentYear }}" class="block px-4 py-2 text-lg text-[#2c2c2c] hover:bg-[#f9f7f3] hover:text-[#ff6f61]">{{ currentYear }} Contest</a>
       {% endif %}
 
       <div class="mobile-dropdown">
@@ -159,6 +161,8 @@
       </div>
 
       <a href="/poems" class="block px-4 py-2 text-lg text-[#2c2c2c] hover:bg-[#f9f7f3] hover:text-[#ff6f61]">All Poems</a>
+
+      <a href="/contests/2026" class="block mx-4 my-2 text-center text-lg text-white bg-accent hover:bg-accentHover px-4 py-2 rounded-lg transition font-semibold">Enter the Contest</a>
     </div>
   </div>
 </nav>
