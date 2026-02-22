@@ -1,5 +1,6 @@
 ---
 title: "Hello"
+description: "A long-form Easter poem addressing Jesus with repentance, comfort, and a return to the straight path."
 author: "Brent Fisher"
 layout: poem.njk
 date: 2025-04-20

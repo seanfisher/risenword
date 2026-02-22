@@ -1,5 +1,6 @@
 ---
 title: "Morning Light"
+description: "A short-form Easter poem about dawn at the empty tomb and death's chains broken."
 author: "Sean Fisher"
 layout: poem.njk
 date: 2025-05-01

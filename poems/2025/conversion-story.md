@@ -1,5 +1,6 @@
 ---
 title: "A Conversion Story"
+description: "A long-form narrative poem about discovering faith in Christ and a personal conversion journey."
 author: "Joseph Compton"
 layout: poem.njk
 date: 2025-04-20

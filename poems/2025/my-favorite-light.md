@@ -1,5 +1,6 @@
 ---
 title: "My Favorite Light"
+description: "A short-form Easter poem comparing earthly lights to Jesus as the favorite Light."
 author: "Sean Fisher"
 layout: poem.njk
 date: 2025-04-20

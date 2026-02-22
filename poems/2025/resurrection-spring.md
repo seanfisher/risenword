@@ -1,5 +1,6 @@
 ---
 title: "Resurrection Spring"
+description: "A short-form Easter poem contrasting spring's vibrancy with the eternal life of resurrection."
 author: "Sean Fisher"
 layout: poem.njk
 date: 2025-04-20

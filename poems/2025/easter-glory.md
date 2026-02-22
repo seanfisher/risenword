@@ -1,5 +1,6 @@
 ---
 title: "Easter Glory"
+description: "A long-form Easter poem of grief and hope, trusting Christ for reunion beyond death."
 author: "Loni Hackworth"
 layout: poem.njk
 date: 2025-04-20

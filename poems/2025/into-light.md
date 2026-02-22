@@ -1,5 +1,6 @@
 ---
 title: "Into Light"
+description: "A short-form Easter poem about warmth and joy found in the light."
 author: "Jenni Fisher"
 layout: poem.njk
 date: 2025-04-20

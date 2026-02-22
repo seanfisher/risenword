@@ -1,5 +1,6 @@
 ---
 title: "The Ballad of Grace"
+description: "A long-form Easter poem about despair giving way to Christ's inner light and grace."
 author: "Sean Fisher"
 layout: poem.njk
 date: 2025-04-20

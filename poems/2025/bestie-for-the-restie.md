@@ -1,5 +1,6 @@
 ---
 title: "Bestie for the Restie"
+description: "A short-form Easter poem celebrating the empty tomb and Jesus as a life-brightening friend."
 author: "Janessa Hadobas"
 layout: poem.njk
 date: 2025-04-20

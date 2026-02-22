@@ -1,5 +1,6 @@
 ---
 title: "Younnukorns"
+description: "A short-form Easter poem about loving unicorns, but loving Jesus more."
 author: "Olivia Fisher"
 layout: poem.njk
 date: 2025-04-20

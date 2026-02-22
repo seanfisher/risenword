@@ -1,5 +1,6 @@
 ---
 title: "Empty Tomb"
+description: "A short-form Easter poem about the empty tomb and the triumph of the resurrection."
 author: "Sean Fisher"
 layout: poem.njk
 date: 2025-05-01

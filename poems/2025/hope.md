@@ -1,5 +1,6 @@
 ---
 title: "Hope"
+description: "A short-form Easter poem about hope rising from darkness, strengthened by divine light."
 author: "Jennie Compton"
 layout: poem.njk
 date: 2025-04-20

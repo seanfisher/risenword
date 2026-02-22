@@ -1,5 +1,6 @@
 ---
 title: Home
+description: The Risen Word is a collection of original Christian poetry celebrating Jesus Christ's resurrection, plus our annual Easter poetry contest.
 layout: home.njk
 ---
 

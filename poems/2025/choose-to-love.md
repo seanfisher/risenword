@@ -1,5 +1,6 @@
 ---
 title: "Choose to Love"
+description: "A short-form Easter poem about stepping into the light to find strength and choose love."
 author: "Evan Fisher"
 layout: poem.njk
 date: 2025-04-20

@@ -1,5 +1,6 @@
 ---
 title: "Rise"
+description: "A long-form Easter poem that traces rising in nature to Christ's resurrection."
 author: "Jenni Fisher"
 layout: poem.njk
 date: 2025-04-20

@@ -1,5 +1,6 @@
 ---
 title: "Rebirth"
+description: "A short-form Easter poem about living water bringing rebirth from the dusty earth."
 author: "Jennie Compton"
 layout: poem.njk
 date: 2025-04-20

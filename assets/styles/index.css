@@ -5,6 +5,7 @@
     font-family: 'TAN Mon Cheri';
     src: url('/fonts/tan-mon-cheri.woff2') format('woff2'),
         url('/fonts/tan-mon-cheri.woff') format('woff');
+    font-display: swap;
     font-weight: normal;
     font-style: normal;
 }
@@ -15,6 +16,7 @@
         url('/fonts/BDScript-Regular.woff2') format('woff2'),
         url('/fonts/BDScript-Regular.woff') format('woff'),
         url('/fonts/BDScript-Regular.ttf') format('truetype');
+    font-display: swap;
     font-weight: 400;
     font-style: normal;
 }

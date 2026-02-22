@@ -15,7 +15,7 @@ description: Submit your poem for the 2026 Risen Word Easter Poetry Contest.
 <div class="w-full flex justify-center">
   <iframe
     src="https://docs.google.com/forms/d/e/1FAIpQLSeTBakij2az5vgAeXf51iMDhwrAr5CXBcSnSJDtsERS6NAtkA/viewform?embedded=true"
-    width="100%"
+    width="640"
     height="2200"
     frameborder="0"
     marginheight="0"

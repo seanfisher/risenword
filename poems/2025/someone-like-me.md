@@ -1,5 +1,6 @@
 ---
 title: "Someone Like Me"
+description: "A long-form Easter poem about Christ's mercy and forgiveness for those who feel unworthy."
 author: "Morgan Fisher"
 layout: poem.njk
 date: 2025-04-20

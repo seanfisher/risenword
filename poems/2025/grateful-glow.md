@@ -1,5 +1,6 @@
 ---
 title: "Grateful Glow"
+description: "A short-form Easter poem linking gratitude with the blessing of light in the night."
 author: "Lisa Fisher"
 layout: poem.njk
 date: 2025-04-20

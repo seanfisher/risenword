@@ -1,5 +1,6 @@
 ---
 title: "In Listening"
+description: "A short-form Easter poem of quiet faith, with stars and whispers assuring we are not alone."
 author: "Matthew Compton, Jr."
 layout: poem.njk
 date: 2025-04-20

@@ -1,5 +1,6 @@
 ---
 title: "Easter's Miracle"
+description: "A short-form Easter poem celebrating spring renewal and Christ's victory over death."
 author: "Sean Fisher"
 layout: poem.njk
 date: 2025-05-01

@@ -1,5 +1,6 @@
 ---
 title: "Rechristened"
+description: "A long-form Easter poem about Mary at the tomb and Christ calling her to renewed hope."
 author: "Sean Fisher"
 layout: poem.njk
 date: 2025-04-20

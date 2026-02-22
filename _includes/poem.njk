@@ -3,6 +3,27 @@
 {% block content %}
 <article class="bg-white px-6 pb-6 pt-2 rounded-lg shadow-md my-1" itemscope itemtype="http://schema.org/CreativeWork">
   <link itemprop="additionalType" href="https://dbpedia.org/ontology/Poem" />
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "CreativeWork",
+    "name": {{ title | dump }},
+    "author": {
+      "@type": "Person",
+      "name": {{ author | dump }}
+    },
+    "datePublished": "{{ page.date | date('yyyy-MM-dd') }}",
+    "description": {{ (description or site.description) | dump }},
+    "inLanguage": "en",
+    "genre": "Poetry",
+    "url": "{{ site.url }}{{ page.url }}",
+    "isPartOf": {
+      "@type": "WebSite",
+      "name": {{ site.title | dump }},
+      "url": "{{ site.url }}"
+    }
+  }
+  </script>
   <h2 class="text-2xl font-serif font-bold text-center mb-2 text-text" itemprop="name">{{ title }}</h2>
   <p class="text-lg text-gray-600 text-center mb-1">By <span itemprop="author">{{ author }}</span></p>
   <p class="text-sm text-gray-500 text-center mb-4">Published <span itemprop="dateCreated">{{ page.date | date }}</span></p>
@@ -24,6 +45,16 @@
       <p><em>The author used AI for {{ ai_use | join(', ') }}.</em></p>
     {% else %}
       <p><em>No AI assistance information provided.</em></p>
+    {% endif %}
+  </div>
+
+  <div class="mt-4 text-sm text-gray-600 text-center">
+    <a href="/authors/{{ author | slugify }}/" class="text-accent hover:text-accentHover underline">More poems by {{ author }}</a>
+    {% if category %}
+      · <a href="/categories/{{ category | slugify }}/" class="text-accent hover:text-accentHover underline">{{ category }} poems</a>
+    {% endif %}
+    {% if year %}
+      · <a href="/years/{{ year | slugify }}/" class="text-accent hover:text-accentHover underline">{{ year }} contest</a>
     {% endif %}
   </div>
 

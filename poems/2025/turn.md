@@ -1,5 +1,6 @@
 ---
 title: "Turn"
+description: "A long-form Easter poem about turning from shadow to the gentle light of Christ."
 author: "Lisa Fisher"
 layout: poem.njk
 date: 2025-04-20
