@@ -1,7 +1,7 @@
 ---
 title: "Easter Poem"
 description: "A long-form Easter poem reminding that the holiday centers on Jesus' sacrifice and courage."
-author: "Annie Compton"
+author: "AnneMarie Compton"
 layout: poem.njk
 date: 2025-04-20
 year: 2025

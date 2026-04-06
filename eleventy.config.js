@@ -2,6 +2,7 @@ import { DateTime } from "luxon";
 import CleanCSS from "clean-css";
 import { execSync } from 'child_process';
 import postcssPlugin from "@jgarber/eleventy-plugin-postcss";
+import markdownIt from "markdown-it";
 
 // Utility function to sort poems by title, ignoring stopwords
 function sortPoemsByTitle(poems) {
@@ -58,6 +59,12 @@ function configureBuild(eleventyConfig) {
 
   eleventyConfig.addFilter("index", (array, item) => {
     return array.findIndex(i => i.url === item.url);
+  });
+
+  // Return the sort-key title (stop words stripped, lowercase) for alphabetical grouping
+  const stopWordsRegex = /^(a |an |the |and |but |or |for |nor |on |at |to |from |by )/i;
+  eleventyConfig.addFilter("sortTitle", (title) => {
+    return (title || "").toLowerCase().replace(stopWordsRegex, "").trim();
   });
 }
 
@@ -129,10 +136,22 @@ function addCollections(eleventyConfig) {
     });
     return [...set].sort((a, b) => a.localeCompare(b));
   });
+
+  // Map contest year → contest page data (theme, title, etc.)
+  eleventyConfig.addCollection("contestsByYear", collection => {
+    const map = {};
+    collection.getFilteredByGlob("contests/*.md").forEach(p => {
+      if (p.data.year) map[p.data.year] = p.data;
+    });
+    return map;
+  });
 }
 
 export default async function (eleventyConfig) {
   eleventyConfig.addPlugin(postcssPlugin);
+
+  const md = markdownIt({ html: true });
+  eleventyConfig.setLibrary("md", md);
 
   configureBuild(eleventyConfig);
   addCollections(eleventyConfig);

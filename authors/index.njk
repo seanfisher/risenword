@@ -1,0 +1,30 @@
+---
+layout: layout.njk
+permalink: "/authors/"
+title: Poets
+description: Browse all poets who have contributed to the Risen Word Easter Poetry Contest.
+---
+
+<div class="max-w-3xl mx-auto">
+  <h1 class="font-playfair text-4xl font-bold text-center text-text mb-2">Our Poets</h1>
+  <p class="text-center text-gray-500 mb-10">Everyone who has shared their words with the Risen Word community.</p>
+
+  <ul class="grid grid-cols-2 sm:grid-cols-3 gap-4" role="list">
+    {% for author in collections.authors %}
+      {% set count = collections.poemsByAuthor[author] | length %}
+      <li>
+        <a
+          href="/authors/{{ author | slugify }}/"
+          class="flex flex-col items-center text-center p-5 rounded-xl border border-[#e8e4dd] bg-white hover:border-accent hover:shadow-md transition group"
+        >
+          <span
+            class="inline-flex items-center justify-center w-12 h-12 rounded-full bg-[#fff7f2] text-accent text-xl font-bold mb-3 group-hover:bg-accent group-hover:text-white transition"
+            aria-hidden="true"
+          >{{ author | truncate(1, true, "") }}</span>
+          <span class="font-semibold text-text leading-snug group-hover:text-accent transition">{{ author }}</span>
+          <span class="mt-1 text-sm text-gray-400">{{ count }} poem{% if count != 1 %}s{% endif %}</span>
+        </a>
+      </li>
+    {% endfor %}
+  </ul>
+</div>

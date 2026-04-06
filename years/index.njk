@@ -1,15 +1,33 @@
 ---
 layout: layout.njk
 permalink: "/years/"
+title: Browse by Year
 description: Browse Risen Word Easter poems by contest year.
 ---
 
-<h1>Contest Years</h1>
-<ul>
-  {% for year in collections.contestYears %}
-    <li>
-      <a href="/years/{{ year | slugify }}/">{{ year }}</a>
-      ({{ collections.poemsByYear[year] | length }})
-    </li>
-  {% endfor %}
-</ul>
+<div class="max-w-3xl mx-auto">
+  <h1 class="font-playfair text-4xl font-bold text-center text-text mb-2">Browse by Year</h1>
+  <p class="text-center text-gray-500 mb-10">Each year, poets share their Easter reflections in our annual contest.</p>
+
+  <ul class="space-y-4" role="list">
+    {% for year in collections.contestYears | reverse %}
+      {% set count = collections.poemsByYear[year] | length %}
+      {% set contest = collections.contestsByYear[year] %}
+      <li>
+        <a
+          href="/years/{{ year | slugify }}/"
+          class="flex items-center justify-between p-6 rounded-2xl border border-[#e8e4dd] bg-white hover:border-accent hover:shadow-lg transition-all group"
+        >
+          <div>
+            <span class="font-playfair text-2xl font-bold text-text group-hover:text-accent transition-colors">{{ year }}</span>
+            {% if contest and contest.theme %}
+              <p class="text-sm text-gray-500 mt-1 italic">Theme: &#8220;{{ contest.theme }}&#8221;</p>
+            {% endif %}
+            <p class="text-sm text-gray-400 mt-1">{{ count }} poem{% if count != 1 %}s{% endif %}</p>
+          </div>
+          <span class="text-accent text-sm font-semibold opacity-0 group-hover:opacity-100 transition-opacity" aria-hidden="true">Browse →</span>
+        </a>
+      </li>
+    {% endfor %}
+  </ul>
+</div>

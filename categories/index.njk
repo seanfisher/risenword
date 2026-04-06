@@ -1,15 +1,28 @@
 ---
 layout: layout.njk
 permalink: "/categories/"
+title: Browse by Category
 description: Explore Risen Word poems by category, including short form and long form Easter poetry.
 ---
 
-<h1>Categories</h1>
-<ul>
-  {% for category in collections.categories %}
-    <li>
-      <a href="/categories/{{ category | slugify }}/">{{ category }}</a>
-      ({{ collections.poemsByCategory[category] | length }})
-    </li>
-  {% endfor %}
-</ul>
+<div class="max-w-3xl mx-auto">
+  <h1 class="font-playfair text-4xl font-bold text-center text-text mb-2">Browse by Category</h1>
+  <p class="text-center text-gray-500 mb-10">Easter poems organized by form and style.</p>
+
+  <ul class="grid grid-cols-1 sm:grid-cols-2 gap-6" role="list">
+    {% for category in collections.categories %}
+      {% set count = collections.poemsByCategory[category] | length %}
+      <li>
+        <a
+          href="/categories/{{ category | slugify }}/"
+          class="flex flex-col items-center text-center p-8 rounded-2xl border border-[#e8e4dd] bg-white hover:border-accent hover:shadow-lg transition-all group"
+        >
+          <span class="text-4xl mb-4" aria-hidden="true">{% if 'long' in (category | lower) %}📜{% else %}✨{% endif %}</span>
+          <span class="font-playfair text-2xl font-bold text-text group-hover:text-accent transition-colors mb-2">{{ category }}</span>
+          <span class="text-sm text-gray-400 mb-4">{{ count }} poem{% if count != 1 %}s{% endif %}</span>
+          <span class="inline-flex items-center gap-1 text-accent text-sm font-semibold group-hover:gap-2 transition-all">Browse poems <span aria-hidden="true">→</span></span>
+        </a>
+      </li>
+    {% endfor %}
+  </ul>
+</div>

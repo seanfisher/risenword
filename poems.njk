@@ -5,10 +5,65 @@ layout: layout.njk
 ---
 {% from "_macros/poems.njk" import poemListItem %}
 {% set sortedPoems = collections.poems %}
-<h1 class="text-3xl font-serif font-bold text-center mb-4">All Poems</h1>
-<em class="block text-center text-gray-500 mb-4">Alphabetically</em>
-<ul class="space-y-2">
+
+{# Build list of first letters present in the collection #}
+{% set activeletters = [] %}
 {% for poem in sortedPoems %}
-  {{ poemListItem(poem) }}
+  {% set fl = (poem.data.title | sortTitle)[0] | upper %}
+  {% if activeletters.indexOf(fl) == -1 %}
+    {% set activeletters = activeletters.concat([fl]) %}
+  {% endif %}
 {% endfor %}
-</ul>
+
+{% set alphabet = ["A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z"] %}
+
+<div class="max-w-3xl mx-auto">
+  <h1 class="font-playfair text-4xl font-bold text-center text-text mb-2">All Poems</h1>
+  <p class="text-center text-gray-500 mb-3">{{ sortedPoems | length }} poems, sorted alphabetically</p>
+
+  <nav class="flex flex-wrap justify-center gap-x-4 gap-y-1 mb-6 text-sm" aria-label="Browse poems by">
+    <a href="/years/" class="text-accent hover:text-accentHover hover:underline">By Year</a>
+    <span class="text-gray-300" aria-hidden="true">&middot;</span>
+    <a href="/categories/" class="text-accent hover:text-accentHover hover:underline">By Category</a>
+    <span class="text-gray-300" aria-hidden="true">&middot;</span>
+    <a href="/authors/" class="text-accent hover:text-accentHover hover:underline">By Author</a>
+    <span class="text-gray-300" aria-hidden="true">&middot;</span>
+    <a href="/winners/" class="text-accent hover:text-accentHover hover:underline">&#127942; Winners</a>
+  </nav>
+
+  {# Alphabet jump bar #}
+  <nav
+    class="sticky top-2 z-10 flex flex-wrap justify-center gap-1 py-2 px-3 mb-8 bg-white/90 backdrop-blur rounded-xl border border-[#e8e4dd] shadow-sm"
+    aria-label="Jump to letter"
+  >
+    {% for letter in alphabet %}
+      {% if activeletters.indexOf(letter) != -1 %}
+        <a
+          href="#letter-{{ letter }}"
+          class="inline-flex items-center justify-center w-8 h-8 rounded-lg text-sm font-semibold text-accent hover:bg-accent hover:text-white transition-colors"
+        >{{ letter }}</a>
+      {% else %}
+        <span
+          class="inline-flex items-center justify-center w-8 h-8 rounded-lg text-sm text-gray-300 cursor-default select-none"
+          aria-hidden="true"
+        >{{ letter }}</span>
+      {% endif %}
+    {% endfor %}
+  </nav>
+
+  {# Poems grouped by first letter #}
+  {% for letter in activeletters %}
+    <section id="letter-{{ letter }}" class="mb-8 scroll-mt-16">
+      <h2 class="font-playfair text-2xl font-bold text-text border-b border-[#e8e4dd] pb-1 mb-3">{{ letter }}</h2>
+      <ul class="space-y-2">
+        {% for poem in sortedPoems %}
+          {% if (poem.data.title | sortTitle)[0] | upper == letter %}
+            {{ poemListItem(poem) }}
+          {% endif %}
+        {% endfor %}
+      </ul>
+    </section>
+  {% endfor %}
+
+  <a href="#top" class="block text-center text-sm text-accent hover:underline mt-4">&#8593; Back to top</a>
+</div>

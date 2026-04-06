@@ -8,13 +8,62 @@ layout: layout.njk
 ---
 
 {% from "_macros/poems.njk" import poemListItem %}
-{% set sortedPoems = collections.poemsByYear[contestYear] | sort("data.title", reverse=false) | sort("page.date", reverse=true) %}
+{% set poems = collections.poemsByYear[contestYear] %}
+{% set sortedPoems = poems | sort(false, false, "data.title") %}
+{% set contest = collections.contestsByYear[contestYear] %}
 
-<h1 class="text-3xl font-serif font-bold text-center mb-4">Easter Poems Written In {{ contestYear }}</h1>
-<em class="block text-center text-gray-500 mb-4">Alphabetically</em>
-
-<ul class="list-disc list-inside space-y-2">
-{% for poem in sortedPoems %}
-  {{ poemListItem(poem) }}
+{% set winners = [] %}
+{% set runnersUp = [] %}
+{% for poem in poems %}
+  {% if poem.data.award == "winner" %}
+    {% set winners = winners.concat([poem]) %}
+  {% elif poem.data.award == "runner-up" %}
+    {% set runnersUp = runnersUp.concat([poem]) %}
+  {% endif %}
 {% endfor %}
-</ul>
+
+<div class="max-w-3xl mx-auto">
+  <nav class="text-sm text-gray-400 mb-8" aria-label="Breadcrumb">
+    <ol class="flex items-center gap-2">
+      <li><a href="/years/" class="hover:text-accent transition-colors">All Years</a></li>
+      <li aria-hidden="true" class="text-gray-300">/</li>
+      <li class="text-text font-medium">{{ contestYear }}</li>
+    </ol>
+  </nav>
+
+  <h1 class="font-playfair text-4xl font-bold text-text mb-2">{{ contestYear }} Poems</h1>
+  {% if contest and contest.theme %}
+    <p class="text-gray-500 mb-1">Theme: <em class="text-accent font-semibold">&#8220;{{ contest.theme }}&#8221;</em></p>
+  {% endif %}
+  <p class="text-gray-400 text-sm mb-8">
+    {{ poems | length }} poem{% if poems | length != 1 %}s{% endif %}
+    <span class="mx-2 text-gray-300" aria-hidden="true">&mdash;</span>
+    <a href="/contests/{{ contestYear }}/" class="text-accent hover:underline">See contest results →</a>
+  </p>
+
+  {% if winners.length > 0 or runnersUp.length > 0 %}
+    <div class="grid sm:grid-cols-2 gap-4 mb-10">
+      {% for poem in winners %}
+        <a href="{{ poem.url }}" class="block p-5 rounded-xl bg-gradient-to-br from-yellow-50 to-amber-100 border border-yellow-200 hover:shadow-md transition group">
+          <p class="text-xs uppercase tracking-widest text-yellow-700 font-semibold mb-2">🏆 {{ poem.data.category }} Winner</p>
+          <h3 class="font-playfair text-xl font-bold text-text leading-snug mb-1 group-hover:text-accent transition-colors">&#8220;{{ poem.data.title }}&#8221;</h3>
+          <p class="text-sm text-gray-600">by {{ poem.data.author }}</p>
+        </a>
+      {% endfor %}
+      {% for poem in runnersUp %}
+        <a href="{{ poem.url }}" class="block p-5 rounded-xl bg-gradient-to-br from-slate-50 to-slate-100 border border-slate-200 hover:shadow-md transition group">
+          <p class="text-xs uppercase tracking-widest text-gray-500 font-semibold mb-2">🥈 {{ poem.data.category }} Runner-Up</p>
+          <h3 class="font-playfair text-xl font-bold text-text leading-snug mb-1 group-hover:text-accent transition-colors">&#8220;{{ poem.data.title }}&#8221;</h3>
+          <p class="text-sm text-gray-600">by {{ poem.data.author }}</p>
+        </a>
+      {% endfor %}
+    </div>
+  {% endif %}
+
+  <h2 class="text-xs font-semibold uppercase tracking-widest text-gray-400 mb-4">All Poems</h2>
+  <ul class="space-y-2">
+    {% for poem in sortedPoems %}
+      {{ poemListItem(poem) }}
+    {% endfor %}
+  </ul>
+</div>

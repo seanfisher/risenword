@@ -58,11 +58,64 @@
     {% block content -%}{% endblock -%}
   </main>
 
-  <footer class="mt-8 mb-16 p-4 text-center">
-    <p class="font-cursive text-sm text-[#ff6f61]">
-      &copy; <script>document.write(new Date().getFullYear());</script> Seafish Productions.
-      <i>He is Risen, as He said.</i>
-    </p>
+  <footer class="w-full mt-16 border-t border-[#e8e4dd] bg-[#faf8f5]">
+    <div class="max-w-5xl mx-auto px-6 sm:px-8 lg:px-10 py-12">
+
+      <div class="grid grid-cols-2 gap-8 sm:grid-cols-4">
+
+        {# Brand column #}
+        <div class="col-span-2 sm:col-span-1">
+          <div class="font-tan-mon-cheri tracking-wide text-text mb-3">
+            <span class="font-beautifully-delicious text-3xl leading-none block">The</span>
+            RISEN WORD
+          </div>
+          <p class="text-sm text-gray-500 leading-relaxed">
+            Original poetry celebrating the life, mission, and resurrection of Jesus Christ.
+          </p>
+        </div>
+
+        {# Poems column #}
+        <nav aria-label="Browse poems">
+          <h3 class="text-xs font-semibold uppercase tracking-widest text-gray-400 mb-3">Browse</h3>
+          <ul class="space-y-2 text-sm">
+            <li><a href="/poems" class="text-gray-600 hover:text-accent transition">All Poems</a></li>
+            <li><a href="/years/" class="text-gray-600 hover:text-accent transition">By Year</a></li>
+            <li><a href="/categories/" class="text-gray-600 hover:text-accent transition">By Category</a></li>
+            <li><a href="/authors/" class="text-gray-600 hover:text-accent transition">By Author</a></li>
+            <li><a href="/winners/" class="text-gray-600 hover:text-accent transition font-semibold">&#127942; Winners</a></li>
+          </ul>
+        </nav>
+
+        {# Contest years column #}
+        <nav aria-label="Contest results">
+          <h3 class="text-xs font-semibold uppercase tracking-widest text-gray-400 mb-3">Contest Results</h3>
+          <ul class="space-y-2 text-sm">
+            {% for year in collections.contestYears | reverse %}
+              <li><a href="/contests/{{ year }}" class="text-gray-600 hover:text-accent transition">{{ year }} &#8212; <span class="italic">{% if year == 2026 %}As He Said{% elif year == 2025 %}Into the Light{% endif %}</span></a></li>
+            {% endfor %}
+          </ul>
+        </nav>
+
+        {# Site column #}
+        <nav aria-label="Site links">
+          <h3 class="text-xs font-semibold uppercase tracking-widest text-gray-400 mb-3">Site</h3>
+          <ul class="space-y-2 text-sm">
+            <li><a href="/" class="text-gray-600 hover:text-accent transition">Home</a></li>
+            <li><a href="/about/" class="text-gray-600 hover:text-accent transition">About</a></li>
+            {# Submissions closed — re-enable for next contest year
+            <li><a href="/submit/" class="text-gray-600 hover:text-accent transition">Submit a Poem</a></li>
+            #}
+          </ul>
+        </nav>
+
+      </div>
+
+      <div class="mt-10 pt-6 border-t border-[#e8e4dd] flex flex-col sm:flex-row items-center justify-between gap-2 text-xs text-gray-400">
+        <p>&copy; <script>document.write(new Date().getFullYear());</script> Seafish Productions. All rights reserved.</p>
+        <p class="italic text-accent">"He is Risen, as He said." — Matthew 28:6</p>
+      </div>
+
+    </div>
   </footer>
 </body>
 </html>
