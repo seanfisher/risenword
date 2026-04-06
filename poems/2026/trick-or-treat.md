@@ -1,6 +1,6 @@
 ---
 title: "Trick or Treat"
-description: "A tenderly grieving mother finds hope in resurrection faith after losing her infant son Hudson, trusting he will rise again because of Christ's victory over death."
+description: "A tenderly grieving mother finds hope in resurrection faith after losing her infant son, trusting he will rise again because of Christ's victory over death."
 author: "Jenni Fisher"
 layout: poem.njk
 date: 2026-04-05
@@ -41,5 +41,5 @@ The balm and solace to my soul
 Is knowing that he still will grow 
 Because of Him who gives and takes
 Risen to conquer His own pain
-Hudson will rise up from the dead
+Her son will rise up from the dead
 And we will know him, As He Said.
