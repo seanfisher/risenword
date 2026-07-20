@@ -19,12 +19,12 @@ A tiny seed too small for eyes
 Miraculously magnified
 Poppy seed, lentil, cherry, lemon
 Daily growing to watermelon
-Dreams and wonder, firsts and fates 
-Hugs and giggles, could hardly wait 
+Dreams and wonder, firsts and fates
+Hugs and giggles, could hardly wait
 
 One minute strong, the heart with beat
-Then sudden silence, loud as grief 
-Hair like chestnut catching the sun 
+Then sudden silence, loud as grief
+Hair like chestnut catching the sun
 Rosebud fingers, ten of them
 A little whiff of mortal power
 Gut wrenching way to spend an hour
@@ -37,8 +37,8 @@ Is life again a myth and fable
 Illusive treasure in a pirate’s tale
 Grief is costly, trust is free
 What’s the risk to just believe
-The balm and solace to my soul 
-Is knowing that he still will grow 
+The balm and solace to my soul
+Is knowing that he still will grow
 Because of Him who gives and takes
 Risen to conquer His own pain
 Her son will rise up from the dead
